@@ -1,0 +1,106 @@
+//Заголовки таблицы
+.shoppingBag__title {
+  h2 {
+    font-size: 34px;
+    line-height: 1.16;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 3.2*$gutter;
+  }
+  h3 {
+    font-family: $serif;
+    font-size: 18px;
+    font-style: italic;
+    color: $light-gray;
+    text-align: center;
+    padding-bottom: 3*$gutter;
+  }
+}
+.shoppingBag__table {
+  width: 100%;
+  table {
+    width: 100%;
+    thead, tbody,tfoot {
+      width: 100%;
+      tr {
+        width: 100%;
+        td {
+          border-bottom: 1px solid $light-gray;
+          flex-grow: 1;
+        }
+      }
+    }
+  }
+}
+.shoppingBag__table{
+  thead{
+    color: $light-gray;
+    text-transform: uppercase;
+  }
+  tfoot{
+    background-color: $bg;
+    td{
+      padding:0.75*$gutter 0;
+    }
+    .total__price{
+      color: $button;
+    }
+  }
+}
+.shoppingBag__table__product{
+  a{
+    img{
+      width: 80px;
+      height: 80px;
+    }
+  }
+}
+.shoppingBag__table__discription{
+  h2{
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  h3{
+    font-family: $serif;
+    font-size: 12px;
+    font-style: italic;
+  }
+}
+.shoppingBag__table__qty{
+  span{
+    padding-right: 10px;
+  }
+  button{
+    width: 14px;
+    height: 14px;
+    border: 0;
+    background-color: $dark-grey;
+    color: $white;
+    margin: 3px 0;
+    line-height: 14px;
+
+  }
+}
+.shoppingBag__table__amount{
+  .price__clear{
+    padding-left: 10px;
+  }
+}
+.shoppingBag__buttons{
+  padding: 1.5*$gutter 0 4*$gutter 0;
+}
+.link__button{
+  text-decoration: underline;
+}
+.order__button{
+  background-color: $button;
+  text-transform: uppercase;
+  border: none;
+  width: 230px;
+  height: 58px;
+  &:hover{
+    background-color: $button-hover;
+    cursor: pointer;
+  }
+}

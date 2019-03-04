@@ -1,0 +1,71 @@
+//Header
+.header{
+  padding: $gutter/1.5;
+}
+//Логотип
+.header__logo {
+  & a {
+    & img {
+      width: 43px;
+      height: 43px;
+    }
+  }
+}
+
+//Меню
+.header__menu {
+  li {
+    margin: 0 $gutter;
+    a {
+      color: $dark-grey;
+      text-decoration: none;
+      font-size: $font-size;
+    }
+  }
+}
+
+//Форма поиска
+.header__search {
+  input {
+    width: 200px;
+    height: 43px;
+  }
+  .search__button {
+    position: relative;
+    width: 41px;
+    height: 43px;
+    background-color: $white;
+    border: 1px solid $light-gray;
+    left: -1px;
+    &:hover {
+      background-color: $grey;
+      & i {
+        color: $white;
+      }
+    }
+    i {
+      color: $grey;
+    }
+  }
+}
+//Корзина
+.header__basket{
+  a{
+    display: flex;
+    justify-content: flex-end;
+    color: $dark-grey;
+    span{
+      &:after{
+        content: '\2769';
+      }
+      &:before{
+        content: '\2768';
+      }
+    }
+  }
+}
+//Линия header
+.header__line{
+    width: 93%;
+    border-bottom: 1px solid $grey;
+}

@@ -1,0 +1,28 @@
+.coats__title,.shirts__title,.outerwear__title{
+  h2{
+    font-size: 34px;
+    line-height: 1.16;
+    text-transform: uppercase;
+  }
+  a{
+    font-family: $serif;
+  }
+}
+.coast__item,.shirts__item,.outerwear__item{
+  padding: 2*$gutter 0 5*$gutter 0;
+  .product_image{
+    width: 200px;
+    height: 250px;
+      img{
+        max-width: 100%;
+        max-height: 100%;
+      }
+  }
+  h4,.product__price{
+    font-weight: bold;
+
+  }
+  h4{
+    margin: 2*$gutter 0 $gutter 0;
+  }
+}

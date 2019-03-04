@@ -1,0 +1,25 @@
+.preview__container{
+ position: relative;
+  .preview__nav{
+    padding-bottom: $gutter;
+    position: relative;
+    li{
+        border: 1px solid $light-gray;
+        margin: $gutter 0;
+      a{
+        img{
+          width: 70px;
+          height: 70px;
+        }
+      }
+    }
+  }
+}
+.preview__content{
+  .preview__item{
+    img{
+      width: 80%;
+    }
+  }
+
+}

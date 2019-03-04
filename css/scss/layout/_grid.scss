@@ -1,0 +1,155 @@
+@each $align in $align-map {    /* */
+  .text-#{$align} {
+    text-align: $align;
+  }
+}
+.container-fluid {    /* */
+  position: relative;
+}
+.container {
+  max-width: $grid-width; /* */
+  margin: 0 auto;
+  position: relative;
+
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+}
+.flex {
+  display: flex;
+}
+
+[class*="col-"] {
+  margin: 0 $gutter/2.1;  /* */
+  padding: $font-size/2.2; /* */
+  box-sizing: border-box;
+  flex-grow: 0;
+  flex-shrink: 0;
+  position: relative;
+}
+.no-gap {
+  padding: 0 !important;
+}
+.no-margin{
+  margin: 0 !important;
+}
+.col-auto {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+.visible {
+  display: block;
+}
+.visible-flex {
+  display: flex;
+}
+.hidden {
+  display: none;
+}
+.justify-start {
+  justify-content: flex-start;    /*флексы прижаты к началу строки*/
+}
+.justify-end {
+  justify-content: flex-end;  /*флексы прижаты к концу строки*/
+}
+.justify-center {
+  justify-content: center;    /*флексы выравниваютя по центру строки*/
+}
+.justify-around {
+  justify-content: space-around;  /*флексы равномерно распределяются по строке, расстояние перед первым и после последнего равно половине растояния между элементеми*/
+}
+.justify-between {
+  justify-content: space-between; /*флексы равномерно распределяются по строке, первый и последний прижимаются к краю контейнера*/
+}
+.justify-evenly {
+  justify-content: space-evenly;  /*Флексы распределяются так, что расстояние между любыми двумя соседними элементами, а также перед первым и после последнего, было одинаковым*/
+}
+.align-start {
+  align-items: flex-start;    /*Флексы выравниваются в начале поперечной оси контейнера*/
+}
+.align-end {
+  align-items: flex-end;  /*Флексы выравниваются в конце поперечной оси контейнера*/
+}
+.align-center {
+  align-items: center;    /*Флексы выравниваются по линии поперечной оси.*/
+}
+.align-stretch {
+  align-items: stretch;   /*Флексы растягиваются таким образом, чтобы занять всё доступное пространство контейнера*/
+}
+.align-baseline {
+  align-items: baseline;  /*Флексы выравниваются по их базовой линии*/
+}
+
+.align-self-start {
+  align-self: flex-start; /*Флексы выравниваются по их базовой линии*/
+}
+.align-self-end {
+  align-self: flex-end;   /*Элемент выравнивается в конце поперечной оси контейнера*/
+}
+.align-self-center {
+  align-self: center; /*Элемент выравнивается по центральной линии на поперечной оси*/
+}
+.align-self-stretch {
+  align-self: stretch;    /*Элемент растягивается таким образом, чтобы занять всё свободное пространство контейнера по поперечной оси*/
+}
+.align-self-baseline {
+  align-self: baseline;   /*Элемент выравнивается по базовой линии текста*/
+}
+
+
+@for $i from 1 through $cols {  /* */
+  .col-#{$i} {
+    flex-basis: $i*(100%/$cols) - $gutter;
+  }
+  .order-#{$i} {  /* */
+    order: $i;
+  }
+  .offset-#{$i - 1} { /* */
+    margin-left: ($i - 1)*(100%/$cols);
+  }
+}
+
+@each $suffix, $value in $break-points {  /* */
+  @media screen and (max-width: $value) {
+
+    @for $i from 1 through $cols {  /* */
+      .col-#{$suffix}-#{$i} {
+        flex-basis: $i*(100%/$cols) - $gutter;
+      }
+      .order-#{$suffix}-#{$i} { /* */
+        order: $i;
+      }
+      .offset-#{$suffix}-#{$i - 1} {  /* */
+        margin-left: ($i - 1)*(100%/$cols);
+      }
+      .column-#{$suffix}{
+        display: flex;
+        flex-direction: column;
+      }
+      .row-#{$suffix}{
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .visible-#{$suffix} {
+        display: block;
+      }
+      .visible-flex-#{$suffix} {
+        display: flex;
+      }
+      .hidden-#{$suffix} {
+        display: none;
+      }
+      .col-#{$suffix}-auto {
+        flex-grow: 1;
+        flex-shrink: 1;
+      }
+    }
+
+  }
+}

@@ -1,0 +1,22 @@
+//Breadcrumb
+.breadcrumb__menu{
+  padding: $gutter;
+  li{
+    display: inline-block;
+    font-size: 12px;
+    text-transform: uppercase;
+    +li:before{
+      padding: $gutter;
+      color: $dark-grey;
+      content: "/\00a0";
+    }
+    a{
+      color: $grey;
+      &:hover{
+        color: $dark-grey;
+        text-decoration: underline;
+      }
+    }
+  }
+
+}

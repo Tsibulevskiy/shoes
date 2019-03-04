@@ -1,0 +1,22 @@
+$sans: 'Lato', sans-serif;  /* */
+$serif: 'Georgia', serif;  /* */
+$font-size: 14px; /* */
+
+$grid-width: 1250px;  /* */
+$cols: 12;  /* */
+$gutter: 2%;  /* */
+$break-points: (  /* */
+        xs: 435px,
+        s: 768px,
+        m: 1024px,
+        l: 1440px
+);
+$align-map: left, right, center, justify; /* */
+
+$button: #f68236;
+$button-hover: #e67429;
+$dark-grey: #303030;
+$grey: #606060;
+$light-gray: #a3a3a3;
+$bg: #e5e5e5;
+$white: #ffffff;

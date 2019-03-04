@@ -1,0 +1,107 @@
+//Название товара
+.details__title {
+  padding-top: 2*$gutter;
+  padding-bottom: 0;
+  h2 {
+    font-size: 34px;
+    font-weight: bold;
+    line-height: 1.16;
+    text-transform: uppercase;
+  }
+}
+
+//Код товара
+.details__article {
+  padding-bottom: 0.75*$gutter;
+  h3 {
+    font-family: $serif;
+    font-style: italic;
+  }
+}
+
+//Цена товара
+.detail__price {
+  p {
+    font-family: $serif;
+    font-style: italic;
+    font-weight: bold;
+  }
+}
+
+//Описание товара
+.details__description {
+  width: 54%;
+  padding: $gutter 0;
+  p {
+    text-align: center;
+  }
+}
+
+.details__size {
+  h3 {
+    font-family: $serif;
+    font-weight: bold;
+  }
+}
+
+//кнопки выбора размера
+.details__item {
+  label{
+    user-select: none;
+  }
+
+  i {
+    position: relative;
+    font-size: $font-size;
+
+    width: 41px;
+    height: 43px;
+    background-color: $white;
+    border: 1px solid $light-gray;
+    line-height: 40px;
+    text-align: center;
+
+  }
+  .icon__ok{
+    background-color: $grey;
+    color: $white;
+  }
+}
+
+  input{
+    &+div{
+      i:first-child{
+        display: none;
+      }
+      i:last-child{
+        display: inline-block;
+      }
+    }
+    &:checked+div{
+      i:first-child{
+        display: inline-block;
+      }
+      i:last-child{
+        display: none;
+      }
+    }
+  }
+
+
+
+//кнопка отправки в корзину
+.details__button {
+  width: 100%;
+  padding: 1.5*$gutter 0 2.5*$gutter;
+  .add__button {
+    height: 58px;
+    width: 230px;
+    text-transform: uppercase;
+    background-color: $button;
+    border: none;
+    &:hover {
+      background-color: $button-hover;
+
+    }
+  }
+}

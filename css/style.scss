@@ -1,0 +1,47 @@
+//Layout
+@import "scss/layout/_vars";
+@import "scss/layout/_grid";
+@import "scss/layout/_mixins";
+@import "scss/layout/_reset";
+@import "scss/layout/_typo";
+//Font
+@import "font/flaticon.css";
+
+//Components
+@import "scss/components/header";
+@import "scss/components/slider";
+@import "scss/components/squares";
+@import "scss/components/singUp";
+@import "scss/components/inspiration";
+@import "scss/components/footer";
+@import "scss/components/breadcrumb";
+@import "scss/components/men";
+@import "scss/components/details";
+@import "scss/components/preview";
+@import "scss/components/basket";
+
+
+html,body {
+  font-size: $font-size;
+  @include sans-serif;
+  background-color: $bg;
+  width: 100%;
+  height: 100%;
+}
+
+a{
+  text-decoration: none;
+  color: $dark-grey;
+}
+.white__bg{
+  background-color: $white;
+}
+.grey__bg{
+  background-color: $light-gray;
+}
+.darkgrey__bg{
+  background-color: $grey;
+}
+.borger-right{
+  border-right: 1px solid $light-gray;
+}

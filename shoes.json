@@ -1,0 +1,298 @@
+[
+  {
+    "category": "men",
+    "id": "1",
+    "type": "shoes",
+    "name": "brooks Adrenaline GTS19 ",
+    "color": "White Blue",
+    "sizes": [
+      39,
+      40,
+      41,
+      42,
+      43
+    ],
+    "article": "12748293723428",
+    "price": "150.45",
+    "photos": [
+      "image/shoes/men/brooksAdrenalineGTS19WhiteBlue/foto 1.jpg",
+      "image/shoes/men/brooksAdrenalineGTS19WhiteBlue/foto 1.1.jpg",
+      "image/shoes/men/brooksAdrenalineGTS19WhiteBlue/foto 1.2.jpg"
+    ],
+    "thumbnails": [
+      "image/shoes/men/brooksAdrenalineGTS19WhiteBlue/small/foto1.jpg",
+      "image/shoes/men/brooksAdrenalineGTS19WhiteBlue/small/foto1.1.jpg",
+      "image/shoes/men/brooksAdrenalineGTS19WhiteBlue/small/foto1.2.jpg"
+    ]
+  },
+  {
+    "category": "men",
+    "id": "2",
+    "type": "shoes",
+    "name": "Nike Zoom Fly Flyknit ",
+    "color": "Black Grey",
+    "sizes": [
+      39,
+      40,
+      41,
+      42,
+      43
+    ],
+    "article": "1274823428",
+    "price": "140.45",
+    "photos": [
+      "image/shoes/men/NikeZoomFlyFlyknit/foto1.jpg",
+      "image/shoes/men/NikeZoomFlyFlyknit/foto1.1.jpg",
+      "image/shoes/men/NikeZoomFlyFlyknit/foto1.2.jpg"
+    ],
+    "thumbnails": [
+      "image/shoes/men/NikeZoomFlyFlyknit/small/foto1.jpg",
+      "image/shoes/men/NikeZoomFlyFlyknit/small/foto1.1.jpg",
+      "image/shoes/men/NikeZoomFlyFlyknit/small/foto1.2.jpg"
+    ]
+  },
+  {
+    "category": "men",
+    "id": "3",
+    "type": "shoes",
+    "name": "Brooks Glycerin 16",
+    "color": "Grey Orange",
+    "sizes": [
+      39,
+      40.41,
+      42,
+      43
+    ],
+    "article": "127834385324932",
+    "price": "199.34",
+    "photos": [
+      "image/shoes/men/brooksGlycerin16GreyOrange/foto 1.jpg",
+      "image/shoes/men/brooksGlycerin16GreyOrange/foto 1.1.jpg",
+      "image/shoes/men/brooksGlycerin16GreyOrange/foto 1.2.jpg"
+    ],
+    "thumbnails": [
+      "image/shoes/men/brooksGlycerin16GreyOrange/small/foto1.jpg",
+      "image/shoes/men/brooksGlycerin16GreyOrange/small/foto1.1.jpg",
+      "image/shoes/men/brooksGlycerin16GreyOrange/small/foto1.2.jpg"
+    ]
+  },
+  {
+    "category": "men",
+    "id": "4",
+    "type": "shoes",
+    "name": "ENERGY BOOST",
+    "color": "Black",
+    "sizes": [
+      39,
+      40.41,
+      42,
+      43
+    ],
+    "article": "123343258767",
+    "price": "234.99",
+    "photos": [
+      "image/shoes/men/eNERGYBOOSTBlack/foto 1.jpg",
+      "image/shoes/men/eNERGYBOOSTBlack/foto 1.1.jpg",
+      "image/shoes/men/eNERGYBOOSTBlack/foto 1.2.jpg"
+    ],
+    "thumbnails": [
+      "image/shoes/men/eNERGYBOOSTBlack/small/foto1.jpg",
+      "image/shoes/men/eNERGYBOOSTBlack/small/foto1.1.jpg",
+      "image/shoes/men/eNERGYBOOSTBlack/small/foto1.2.jpg"
+    ]
+  },
+  {
+    "category": "women",
+    "id": "5",
+    "type": "shoes",
+    "name": "Adidas Solar GlideST Medium",
+    "color": "Lemon",
+    "sizes": [
+      37,
+      38,
+      39,
+      40.41
+    ],
+    "article": "6453524524352",
+    "price": "165.44",
+    "photos": [
+      "image/shoes/women/adidasSolarGlideSTMediumLemon/foto 1.jpg",
+      "image/shoes/women/adidasSolarGlideSTMediumLemon/foto 1.1.jpg",
+      "image/shoes/women/adidasSolarGlideSTMediumLemon/foto 1.2.jpg"
+    ],
+    "thumbnails": [
+      "image/shoes/women/adidasSolarGlideSTMediumLemon/small/foto1.jpg",
+      "image/shoes/women/adidasSolarGlideSTMediumLemon/small/foto1.1.jpg",
+      "image/shoes/women/adidasSolarGlideSTMediumLemon/small/foto1.2.jpg"
+    ]
+  },
+  {
+    "category": "women",
+    "id": "6",
+    "type": "shoes",
+    "name": "Hoka Challenger Atr4",
+    "color": "Black Red",
+    "sizes": [
+      37,
+      38,
+      39,
+      40.41
+    ],
+    "article": "34231314124646",
+    "price": "133.99",
+    "photos": [
+      "image/shoes/women/hokaChallengerAtr4BlackRed/foto 1.jpg",
+      "image/shoes/women/hokaChallengerAtr4BlackRed/foto 1.1.jpg",
+      "image/shoes/women/hokaChallengerAtr4BlackRed/foto 1.2.jpg"
+    ],
+    "thumbnails": [
+      "image/shoes/women/hokaChallengerAtr4BlackRed/small/foto1.jpg",
+      "image/shoes/women/hokaChallengerAtr4BlackRed/small/foto1.1.jpg",
+      "image/shoes/women/hokaChallengerAtr4BlackRed/small/foto1.2.jpg"
+    ]
+  },
+  {
+    "category": "women",
+    "id": "7",
+    "type": "shoes",
+    "name": "Inov8 Trailtalon 290",
+    "color": "Purple Black",
+    "sizes": "[37,38,39,40.41]",
+    "article": "3124446577",
+    "price": "324.89",
+    "photos": [
+      "image/shoes/women/inov-8Trailtalon290PurpleBlack/foto 1.jpg",
+      "image/shoes/women/inov-8Trailtalon290PurpleBlack/foto 1.1.jpg",
+      "image/shoes/women/inov-8Trailtalon290PurpleBlack/foto 1.2.jpg"
+    ],
+    "thumbnails": [
+      "image/shoes/women/inov-8Trailtalon290PurpleBlack/small/foto1.jpg",
+      "image/shoes/women/inov-8Trailtalon290PurpleBlack/small/foto1.1.jpg",
+      "image/shoes/women/inov-8Trailtalon290PurpleBlack/small/foto1.2.jpg"
+    ]
+  },
+  {
+    "category": "women",
+    "id": "8",
+    "type": "shoes",
+    "name": "Asics GT 2000 7 ",
+    "color": "Black Yellow",
+    "sizes": "[37,38,39,40.41]",
+    "article": "3124446577",
+    "price": "324.89",
+    "photos": [
+      "image/shoes/women/asics-gt-2000-7/foto1.jpg",
+      "image/shoes/women/asics-gt-2000-7/foto1.1.jpg",
+      "image/shoes/women/asics-gt-2000-7/foto1.2.jpg"
+    ],
+    "thumbnails": [
+      "image/shoes/women/asics-gt-2000-7/small/foto1.jpg",
+      "image/shoes/women/asics-gt-2000-7/small/foto1.1.jpg",
+      "image/shoes/women/asics-gt-2000-7/small/foto1.2.jpg"
+    ]
+  },
+  {
+    "category": "kids",
+    "id": "9",
+    "type": "shoes",
+    "name": "Nike Air Force 1-3 (GS)",
+    "color": "white",
+    "sizes": [
+      35,
+      36,
+      37,
+      38,
+      39
+    ],
+    "article": "121446778965",
+    "price": "99.99",
+    "photos": [
+      "image/shoes/kids/nikeAirMax270(GS)/foto 1.jpg",
+      "image/shoes/kids/nikeAirMax270(GS)/foto 1.1.jpg",
+      "image/shoes/kids/nikeAirMax270(GS)/foto 1.2.jpg"
+    ],
+    "thumbnails": [
+      "image/shoes/kids/nikeAirMax270(GS)/small/foto1.jpg",
+      "image/shoes/kids/nikeAirMax270(GS)/small/foto1.1.jpg",
+      "image/shoes/kids/nikeAirMax270(GS)/small/foto1.2.jpg"
+    ]
+  },
+  {
+    "category": "kids",
+    "id": "10",
+    "type": "shoes",
+    "name": "Air Jordan 12 Retro (GS)",
+    "color": "white",
+    "sizes": [
+      35,
+      36,
+      37,
+      38,
+      39
+    ],
+    "article": "121446778965",
+    "price": "93.79",
+    "photos": [
+      "image/shoes/kids/air-jordan-12-retro/foto1.jpg",
+      "image/shoes/kids/air-jordan-12-retro/foto1.1.jpg",
+      "image/shoes/kids/air-jordan-12-retro/foto1.2.jpg"
+    ],
+    "thumbnails": [
+      "image/shoes/kids/air-jordan-12-retro/small/foto1.jpg",
+      "image/shoes/kids/air-jordan-12-retro/small/foto1.1.jpg",
+      "image/shoes/kids/air-jordan-12-retro/small/foto1.2.jpg"
+    ]
+  },
+  {
+    "category": "kids",
+    "id": "11",
+    "type": "shoes",
+    "name": "Reebok GL 3000",
+    "color": "blue",
+    "sizes": [
+      35,
+      36,
+      37,
+      38,
+      39
+    ],
+    "article": "121446778965",
+    "price": "199.99",
+    "photos": [
+      "image/shoes/kids/reebok-classic-gl-3000/foto1.jpg",
+      "image/shoes/kids/reebok-classic-gl-3000/foto1.1.jpg",
+      "image/shoes/kids/reebok-classic-gl-3000/foto1.2.jpg"
+    ],
+    "thumbnails": [
+      "image/shoes/kids/reebok-classic-gl-3000/small/foto1.jpg",
+      "image/shoes/kids/reebok-classic-gl-3000/small/foto1.1.jpg",
+      "image/shoes/kids/reebok-classic-gl-3000/small/foto1.2.jpg"
+    ]
+  },
+  {
+    "category": "kids",
+    "id": "12",
+    "type": "shoes",
+    "name": "Nike Air Force 1-3 (GS)",
+    "color": "white",
+    "sizes": [
+      35,
+      36,
+      37,
+      38,
+      39
+    ],
+    "article": "121446778965",
+    "price": "69.99",
+    "photos": [
+      "image/shoes/kids/air-force-1-3-gs-/foto1.jpg",
+      "image/shoes/kids/air-force-1-3-gs-/foto1.1.jpg",
+      "image/shoes/kids/air-force-1-3-gs-/foto1.2.jpg"
+    ],
+    "thumbnails": [
+      "image/shoes/kids/air-force-1-3-gs-/small/foto1.jpg",
+      "image/shoes/kids/air-force-1-3-gs-/small/foto1.1.jpg",
+      "image/shoes/kids/air-force-1-3-gs-/small/foto1.2.jpg"
+    ]
+  }
+]

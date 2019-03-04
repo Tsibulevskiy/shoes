@@ -1,0 +1,28 @@
+.footer__item{
+  h6{
+    text-transform: uppercase;
+    padding-left: 1.5*$gutter;
+  }
+  a,p{
+    font-size: 12px;
+    padding-bottom: $gutter;
+  }
+}
+.footer__social{
+  font-size: $font-size;
+  position: relative;
+  width: 41px;
+  height: 43px;
+  background-color: $white;
+  border: 1px solid $light-gray;
+  left: -1px;
+  &:hover {
+    background-color: $grey;
+    & i {
+      color: $white;
+    }
+  }
+  i {
+    color: $grey;
+  }
+}
