@@ -7,6 +7,7 @@
             let categoryFootwear = document.querySelector('#coats');
             let sectionDetails = document.querySelector("#details");
             let sectionPreview = document.querySelector("#preview");
+            let sectionBreadcrumb = document.querySelector(".breadcrumb__menu");
             function getFootwear() {
                 let xhr =new XMLHttpRequest();
                 let response = [];
@@ -17,11 +18,14 @@
                         if(categoryFootwear){
                             let gender = getGender(response); //выборка по категории;
                             renderProducts(gender);
-                        };
+                        }
                         if(sectionDetails){
                             let shoesId = getShoes(response);  //выборка по id;
-                            console.log(shoesId);
                             renderShoes(shoesId);
+                        }
+                        if(sectionBreadcrumb){
+                            let breadcrumb = getGender(response);
+                            renderBreadcrumb(breadcrumb);
                         }
                     }
                 });
@@ -40,7 +44,6 @@
             }
             function getShoes(response) {
                 let shoes = [];
-
                 let shoesId = location.search.slice(1);
                 shoes = response.filter(function (item) {
                     if(shoesId == item.id){
@@ -60,13 +63,6 @@
                                 <div class="product__price">€ ${gender.price}</div>
                             </div>`;
             }
-            function renderProducts(gender) {
-                let fragment = gender.map(genderTemplate).join('');
-                if(categoryFootwear){
-                    categoryFootwear.innerHTML = fragment;
-                }
-            }
-            
             function shoesIdTemplate(shoesId) {
                 return `<div class="col-12 details__title"><h2>${shoesId.name}</h2></div>
                             <div class="col-12 details__article"><h3>Article number:${shoesId.article}</h3></div>
@@ -108,18 +104,32 @@
                                     src="${shoesId.photos[2]}" alt="foto"></div>
                         </div>`;
             }
+            function breadcrumbTemplate(gender) {
+                return `<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active" >${gender.category}</li>`;
 
+            }
+
+            function renderProducts(gender) {
+                let fragment = gender.map(genderTemplate).join('');
+                if(categoryFootwear){
+                    categoryFootwear.innerHTML = fragment;
+                }
+            }
             function renderShoes(shoesId) {
                 let fragmentId = shoesId.map(shoesIdTemplate).join('');
                 let fragmentPreview = shoesId.map(shoesPreviewTemplate).join('');
-
-
                 if(sectionDetails){
                     sectionPreview.innerHTML = fragmentPreview;
                     sectionDetails.innerHTML = fragmentId;
                 }
             }
-
+            function renderBreadcrumb(gender) {
+                let fragment = gender.map(breadcrumbTemplate).join('');
+                if(sectionBreadcrumb){
+                    sectionBreadcrumb.innerHTML = fragment;
+                }
+            }
 
             getFootwear();
         })

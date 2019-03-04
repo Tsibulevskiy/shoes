@@ -2065,8 +2065,8 @@ button, input {
 #carousel__navigation span {
   display: block;
   position: absolute;
-  top: 63px;
-  right: 61px;
+  top: 51px;
+  right: 51px;
   width: 50px;
   height: 120px;
   background-color: rgba(163, 163, 163, 0.6);
@@ -2079,7 +2079,7 @@ button, input {
   #carousel__navigation span:hover {
     opacity: 1; }
 #carousel__navigation .carousel__prev {
-  left: 61px; }
+  left: 51px; }
 
 .footer__item h6 {
   text-transform: uppercase;
