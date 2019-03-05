@@ -22,6 +22,7 @@
                         if(sectionDetails){
                             let shoesId = getShoes(response);  //выборка по id;
                             renderShoes(shoesId);
+                            initListeners();
                         }
                         if(sectionBreadcrumb){
                             let breadcrumb = getGender(response);
@@ -31,7 +32,9 @@
                 });
                 xhr.send();
             }
-
+            function initListeners(){
+                Preview.initListeners();
+            }
             function getGender(response) {
                 let shoes = [];
                 let category = location.search.slice(5);
@@ -105,6 +108,7 @@
                         </div>`;
             }
             function breadcrumbTemplate(gender) {
+                console.log(gender);
                 return `<li class="breadcrumb-item"><a href="index.html">Home</a></li>
                         <li class="breadcrumb-item active" >${gender.category}</li>`;
 
