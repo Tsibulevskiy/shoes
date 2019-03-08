@@ -1,9 +1,9 @@
 //
 ;(function () {
-    let searchButton = document.querySelector(".search__button");
-    let searchInput = document.querySelector(".search__input");
-    let searchContainer = document.querySelector('.header__search');
-    let basketContainer = document.querySelector('.header__basket');
+    var searchButton = document.querySelector(".search__button");
+    var searchInput = document.querySelector(".search__input");
+    var searchContainer = document.querySelector('.header__search');
+    var basketContainer = document.querySelector('.header__basket');
 
     searchButton.addEventListener('click', toShow);
     searchInput.addEventListener('change', toHide );

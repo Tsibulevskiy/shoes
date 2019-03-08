@@ -1,46 +1,53 @@
 /**
  * Счетчик корзины
  */
-;(function () {
-    let counter = document.querySelector('#counter');
-    let buttonCart = document.querySelector('.add__button');
-    let buttonOrder = document.querySelector('.order__button');
-    let sectionDetails = document.querySelector("#details");
-    let intermediate = 0;  //промежуточный счетчик;
-    let countSave = 'basket'; //Ключ для хранения в LocalStorage;
+var Counter = (function () {
+    var basket = {
+        "counter": document.querySelector('#counter'),
+        "buttonCart" : document.querySelector('.add__button'),
+        "buttonOrder": document.querySelector('.order__button'),
+        "sectionDetails": document.querySelector("#details"),
+        "intermediate": 0,
+        "countSave" : 'count',
+        "basketSave" : 'basket'
+    };
     //Проверка на наличие в LocalStorage счетчика;
-    if(!localStorage.getItem(countSave)){
-        counter.innerHTML = intermediate;
+    if(!localStorage.getItem(basket.countSave)){
+        basket.counter.innerHTML = basket.intermediate;
     }else{
-        counter.innerHTML = localStorage.getItem(countSave);
+        basket.counter.innerHTML = localStorage.getItem(basket.countSave);
     }
-    // Проверка на наличие элемента;
-    if(buttonCart){
         //Обработчик события на увеличения счетчика товара;
-        sectionDetails.addEventListener('click', addDoCart);
-    }else if(buttonOrder){
+        basket.buttonCart && basket.sectionDetails.addEventListener('click', addDoCart);
         //Обработчик события на обнуление корзины;
-        buttonOrder.addEventListener('click', resetToCart);
-    }
+        basket.buttonOrder && basket.buttonOrder.addEventListener('click', resetToCart);
+
     function addDoCart(event) {
         if (event.target.classList.contains('add__button')){
-            if(!localStorage.getItem(countSave)){
-                intermediate ++;
+            if(!localStorage.getItem(basket.countSave)){
+                basket.intermediate ++;
             }else{
-                let count = localStorage.getItem(countSave);
-                intermediate = count;
-                intermediate ++;
+                var count = localStorage.getItem(basket.countSave);
+                basket.intermediate = count;
+                basket.intermediate ++;
             }
-            counter.innerHTML = intermediate ;
-            localStorage.setItem(countSave, intermediate);
+            basket.counter.innerHTML = basket.intermediate ;
+            localStorage.setItem(basket.countSave, basket.intermediate);
         }
-
     }
     function resetToCart() {
-        intermediate = 0;
-        counter.innerHTML = intermediate ;
-        localStorage.removeItem(countSave);
+        basket.intermediate = 0;
+        basket.counter.innerHTML = basket.intermediate ;
+        localStorage.removeItem(basket.countSave);
     }
+
+
+
+    return {
+
+
+    }
+
 
 })();
 

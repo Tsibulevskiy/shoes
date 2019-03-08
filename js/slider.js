@@ -2,18 +2,14 @@
  * Slider
  */
 ;(function () {
-    let activeIndex = 0;
-
-
-
-    let carousel = document.querySelector('#carousel');
-    let carouselContainer = document.querySelector('.carousel__container');
-    let carouselContainerUl = carousel.querySelector('ul');
-    let carouselItem = carouselContainer.querySelectorAll('li');
-    let carouselPrev = carousel.querySelector('.carousel__prev');
-    let carouselNext = carousel.querySelector('.carousel__next');
-    let carouselWidth = carouselContainer.offsetWidth;
-
+    var activeIndex = 0;
+    var carousel = document.querySelector('#carousel');
+    var carouselContainer = document.querySelector('.carousel__container');
+    var carouselContainerUl = carousel.querySelector('ul');
+    var carouselItem = carouselContainer.querySelectorAll('li');
+    var carouselPrev = carousel.querySelector('.carousel__prev');
+    var carouselNext = carousel.querySelector('.carousel__next');
+    var carouselWidth = carouselContainer.offsetWidth;
     //Задаем Ширину ul
     carouselContainerUl.style.width = carouselWidth*carouselItem.length + 'px';
     //Задаем ширину li
@@ -28,17 +24,13 @@
     //Основная функция карусели;
     function changeCarousel() {
          carouselContainerUl.style.transform = "translateX(-"+ activeIndex*carouselWidth/carouselItem.length +"px)";
-
     }
-
     //Обработчик события на кнопку next;
     carouselNext.addEventListener('click', function () {
         activeIndex++;
         if(activeIndex === carouselItem.length){
             activeIndex = 0;
         }
-
-
         changeCarousel();
     });
     //Обработчик события на кнопку prev;

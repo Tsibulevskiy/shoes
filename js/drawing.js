@@ -2,12 +2,15 @@
  * Created by cerat on 27.02.2019.
  */
 
-;(function () {
+var Draving =   (function () {
         document.addEventListener("DOMContentLoaded", function () {
-            let categoryFootwear = document.querySelector('#coats');
-            let sectionDetails = document.querySelector("#details");
-            let sectionPreview = document.querySelector("#preview");
-            let sectionBreadcrumb = document.querySelector(".breadcrumb__menu");
+            var categoryFootwear = document.querySelector('#coats');
+            var sectionDetails = document.querySelector("#details");
+            var sectionPreview = document.querySelector("#preview");
+            var sectionBreadcrumb = document.querySelector(".breadcrumb__menu");
+            var sectionShoppingBag = document.querySelector("#shopping_bag");
+
+
             function getFootwear() {
                 let xhr =new XMLHttpRequest();
                 let response = [];
@@ -28,12 +31,10 @@
                             let breadcrumb = getGender(response);
                             renderBreadcrumb(breadcrumb);
                         }
+
                     }
                 });
                 xhr.send();
-            }
-            function initListeners(){
-                Preview.initListeners();
             }
             function getGender(response) {
                 let shoes = [];
@@ -57,6 +58,7 @@
 
             }
 
+
             function genderTemplate(gender) {
                     return `<div class="col-3 flex column coast__item justify-center align-center">
                                 <div class="product_image flex  align-center">
@@ -74,16 +76,16 @@
                             <div class="col-12 details__size"><h3>Size</h3></div>
                             <div class="col-12 details__item row justify-center">
                                 <label><input class="hidden" type="radio" checked name="size">
-                                    <div><i class="icon__ok">40</i><i class="">40</i></div>
+                                    <div><i class="icon__ok">${shoesId.sizes[0]}</i><i class="">${shoesId.sizes[0]}</i></div>
                                 </label>
                                 <label><input class="hidden" type="radio" name="size">
-                                    <div><i class="icon__ok">40</i><i class="">40</i></div>
+                                    <div><i class="icon__ok">${shoesId.sizes[1]}</i><i class="">${shoesId.sizes[1]}</i></div>
                                 </label>
                                 <label><input class="hidden" type="radio" name="size">
-                                    <div><i class="icon__ok">40</i><i class="">40</i></div>
+                                    <div><i class="icon__ok">${shoesId.sizes[2]}</i><i class="">${shoesId.sizes[2]}</i></div>
                                 </label>
                                 <label><input class="hidden" type="radio" name="size">
-                                    <div><i class="icon__ok">40</i><i class="">40</i></div>
+                                    <div><i class="icon__ok">${shoesId.sizes[3]}</i><i class="">${shoesId.sizes[3]}</i></div>
                                 </label>
                             </div>
                             <div class="col-12 details__button row justify-center">
@@ -113,6 +115,42 @@
                         <li class="breadcrumb-item active" >${gender.category}</li>`;
 
             }
+            function shoppingBagTemplate(response) {
+                return `<tbody id="shopping_bag">
+                            <tr class="row">
+                                <td class=" col-1 no-margin shoppingBag__table__product">
+                                    <a href="#"><img src="${response.thumbnails[0]}" alt=""></a>
+                                </td>
+                                <td class=" col-6 no-margin shoppingBag__table__discription row align-center">
+                                    <div class="column col-12 no-margin no-gap">
+                                        <div class="col-12 column no-margin no-gap">
+                                            <h2>${response.name}</h2>
+                                            <h3>Ref.${response.article}</h3>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class=" col-2 no-margin shoppingBag__table__color row align-center">
+                                    <span>${response.color}</span>
+                                </td>
+                                <td class=" col-1 no-margin shoppingBag__table__size row align-center">
+                                    <span>39</span>
+                                </td>
+                                <td class="col-1 no-margin shoppingBag__table__qty row align-center">
+                                    <div class="row align-center">
+                                        <span>1</span>
+                                        <div class="column no-gap no-margin">
+                                            <button type="button" class="no-gap">+</button>
+                                            <button type="button" class="no-gap">-</button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="col-1 no-margin shoppingBag__table__amount row align-center">
+                                    <span>€ ${response.price}</span>
+                                    <span class="price__clear">X</span>
+                                </td>
+                            </tr>
+                        </tbody>`
+            }
 
             function renderProducts(gender) {
                 let fragment = gender.map(genderTemplate).join('');
@@ -121,21 +159,31 @@
                 }
             }
             function renderShoes(shoesId) {
-                let fragmentId = shoesId.map(shoesIdTemplate).join('');
-                let fragmentPreview = shoesId.map(shoesPreviewTemplate).join('');
+                var fragmentId = shoesId.map(shoesIdTemplate).join('');
+                var fragmentPreview = shoesId.map(shoesPreviewTemplate).join('');
                 if(sectionDetails){
                     sectionPreview.innerHTML = fragmentPreview;
                     sectionDetails.innerHTML = fragmentId;
                 }
             }
             function renderBreadcrumb(gender) {
-                let fragment = gender.map(breadcrumbTemplate).join('');
+                var fragment = gender.map(breadcrumbTemplate).join('');
                 if(sectionBreadcrumb){
                     sectionBreadcrumb.innerHTML = fragment;
                 }
             }
+            function renderShoppingBag(shoes) {
+                var fragment = shoes.map(shoppingBagTemplate).join('');
+                if (sectionShoppingBag){
+                    sectionShoppingBag.innerHTML = fragment;
+                }
+            }
+
+            function initListeners(){
+                Preview.initListeners();
+            }
 
             getFootwear();
-        })
+        });
 
 })();
