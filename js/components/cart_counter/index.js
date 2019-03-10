@@ -14,7 +14,6 @@ var Counter = (function () {
         }else{
             basket.counter.innerHTML = localStorage.getItem(basket.countSave);
         }
-
         basket.buttonCart && basket.sectionDetails.addEventListener('click', addDoCart);
         basket.buttonCart && basket.sectionDetails.addEventListener('click', addDoBasket);
         basket.buttonOrder && basket.buttonOrder.addEventListener('click', resetToCart);
@@ -27,10 +26,6 @@ var Counter = (function () {
             shopBasket = JSON.parse(localStorage.getItem(basket.basketSave));
             console.log(shopBasket);
         }
-        function CreatingCart() {
-            this.id = location.search.slice(1);
-            this.size = isCheck();
-        }
         var shopCartItem = new CreatingCart();
         shopBasket.push(shopCartItem);
          localStorage.setItem(basket.basketSave, JSON.stringify(shopBasket));
@@ -39,12 +34,15 @@ var Counter = (function () {
 
 
     } //Ф-ция добавления в LocaleStorage;
-    function isCheck() {
-        return document.querySelector('input:checked').id;
+    function isCheck(checkSize) {
+        checkSize= document.querySelector('input:checked').id;
+        return checkSize;
     }   //Выбор размера
-
-    function addDoCart(event) {
-        if (event.target.classList.contains('add__button')){
+    function CreatingCart() {
+        this.id = location.search.slice(1);
+        this.size = isCheck();
+    } //Создание объестов в localeStorage;
+    function addDoCart() {
             if(!localStorage.getItem(basket.countSave)){
                 basket.intermediate ++;
             }else{
@@ -54,22 +52,16 @@ var Counter = (function () {
             }
             basket.counter.innerHTML = basket.intermediate ;
             localStorage.setItem(basket.countSave, basket.intermediate);
-        }
-    } //Ф-ция увеличения счетчика корзины;
+        }//Ф-ция увеличения счетчика корзины;
     function resetToCart() {
         basket.intermediate = 0;
         basket.counter.innerHTML = basket.intermediate ;
         localStorage.removeItem(basket.countSave);
+        localStorage.removeItem(basket.basketSave);
     } //Ф-ция обнуление счетчика корзины;
-
-
-
     return {
             initCart: initCart
-
     }
-
-
 })();
 
 

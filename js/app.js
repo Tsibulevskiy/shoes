@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     let itemId = getShoes(response);  //выборка по id;
                     renderShoes(itemId);
                     initListeners();
+
                 }
                 if (sectionBreadcrumb) {
                     let breadcrumb = getGender(response); //отрисовка breadcrumb;
@@ -66,13 +67,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     function getCartTable(response) {
         let items = [];
-        let itemId = localStorage.getItem(basket.countSave);
-        console.log(itemId);
-        items = response.filter(function (item) {
-            if (itemId == item.id) {
-                return item;
+        itemId = JSON.parse(localStorage.getItem("basket"));
+        let item;
+        for(let i = 0; i < itemId.length; i++){
+            for(let j = 0; j < response.length; j++){
+                if(itemId[i].id == response[j].id){
+                    item = response[j];
+                    items.push(item);
+                }
             }
-        });
+        }
         return items;
     }
 
@@ -131,22 +135,23 @@ document.addEventListener("DOMContentLoaded", function () {
                         <li class="breadcrumb-item active" >${gender.category}</li>`;
 
     }
-    function shoppingBagTemplate(response) {
+    function shoppingBagTemplate(items) {
+        console.log(items);
         return `<tbody id="shopping_bag">
                             <tr class="row">
                                 <td class=" col-1 no-margin shoppingBag__table__product">
-                                    <a href="#"><img src="${response.thumbnails[0]}" alt=""></a>
+                                    <a href="#"><img src="${items.thumbnails[0]}" alt=""></a>
                                 </td>
                                 <td class=" col-6 no-margin shoppingBag__table__discription row align-center">
                                     <div class="column col-12 no-margin no-gap">
                                         <div class="col-12 column no-margin no-gap">
-                                            <h2>${response.name}</h2>
-                                            <h3>Ref.${response.article}</h3>
+                                            <h2>${items.name}</h2>
+                                            <h3>Ref.${items.article}</h3>
                                         </div>
                                     </div>
                                 </td>
                                 <td class=" col-2 no-margin shoppingBag__table__color row align-center">
-                                    <span>${response.color}</span>
+                                    <span>${items.color}</span>
                                 </td>
                                 <td class=" col-1 no-margin shoppingBag__table__size row align-center">
                                     <span>39</span>
@@ -161,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     </div>
                                 </td>
                                 <td class="col-1 no-margin shoppingBag__table__amount row align-center">
-                                    <span>€ ${response.price}</span>
+                                    <span>€ ${items.price}</span>
                                     <span class="price__clear">X</span>
                                 </td>
                             </tr>
@@ -201,8 +206,13 @@ document.addEventListener("DOMContentLoaded", function () {
     function initCart() {
         Counter.initCart();
     }
-    getFootwear();
     initCart();
+    getFootwear();
+
+
+
+
+
 });
 
 
