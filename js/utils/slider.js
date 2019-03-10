@@ -10,6 +10,9 @@
     var carouselPrev = carousel.querySelector('.carousel__prev');
     var carouselNext = carousel.querySelector('.carousel__next');
     var carouselWidth = carouselContainer.offsetWidth;
+
+
+
     //Задаем Ширину ul
     carouselContainerUl.style.width = carouselWidth*carouselItem.length + 'px';
     //Задаем ширину li
@@ -23,13 +26,16 @@
 
     //Основная функция карусели;
     function changeCarousel() {
-         carouselContainerUl.style.transform = "translateX(-"+ activeIndex*carouselWidth/carouselItem.length +"px)";
+         carouselContainerUl.style.transform = "translateX(-"+ 2*activeIndex*carouselWidth/carouselItem.length +"px)";
     }
+
+
     //Обработчик события на кнопку next;
     carouselNext.addEventListener('click', function () {
         activeIndex++;
-        if(activeIndex === carouselItem.length){
-            activeIndex = 0;
+        console.log(carouselItem[0]);
+        for( var i = 0; i < carouselItem.length; i++){
+            carouselContainerUl.appendChild(carouselItem[i].cloneNode(true));
         }
         changeCarousel();
     });

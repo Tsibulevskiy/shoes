@@ -20,11 +20,11 @@ var Counter = (function () {
     }
 
     function addDoBasket() {
+
         if(!localStorage.getItem(basket.basketSave)){
             var shopBasket = [];
         }else{
             shopBasket = JSON.parse(localStorage.getItem(basket.basketSave));
-            console.log(shopBasket);
         }
         var shopCartItem = new CreatingCart();
         shopBasket.push(shopCartItem);
