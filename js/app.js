@@ -67,15 +67,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     function getCartTable(response) {
         let items = [];
-        itemId = JSON.parse(localStorage.getItem("basket"));
+        let itemId = JSON.parse(localStorage.getItem("basket"));
         let item;
         for(let i = 0; i < itemId.length; i++){
             for(let j = 0; j < response.length; j++){
                 if(itemId[i].id == response[j].id){
-                    item = response[j];
-                    items.push(item);
+                    response[j].sizes.filter(function (itemSize) {
+                        if(itemId[i].size !== itemSize){
+                            response[j].sizes.splice(response[j].sizes.indexOf(itemSize + 1));
+                            item = response[j];
+                            console.log(item);
+                        }
+                    });
                 }
             }
+          items.push(item);
+
         }
         return items;
     }
@@ -136,7 +143,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
     function shoppingBagTemplate(items) {
-        console.log(items);
         return `<tbody id="shopping_bag">
                             <tr class="row">
                                 <td class=" col-1 no-margin shoppingBag__table__product">
@@ -154,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     <span>${items.color}</span>
                                 </td>
                                 <td class=" col-1 no-margin shoppingBag__table__size row align-center">
-                                    <span>39</span>
+                                    <span>${items.sizes[0]}</span>
                                 </td>
                                 <td class="col-1 no-margin shoppingBag__table__qty row align-center">
                                     <div class="row align-center">
@@ -188,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
     function renderBreadcrumb(gender) {
-        let fragment = gender.map(breadcrumbTemplate).join('');
+        let fragment = breadcrumbTemplate(gender[0]);
         if (sectionBreadcrumb) {
             sectionBreadcrumb.innerHTML = fragment;
         }

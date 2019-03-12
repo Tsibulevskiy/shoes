@@ -1,5 +1,5 @@
 var Counter = (function () {
-    let basket = {
+    var basket = {
         "counter": document.querySelector('#counter'),
         "buttonCart" : document.querySelector('.add__button'),
         "buttonOrder": document.querySelector('.order__button'),
@@ -20,7 +20,6 @@ var Counter = (function () {
     }
 
     function addDoBasket() {
-
         if(!localStorage.getItem(basket.basketSave)){
             var shopBasket = [];
         }else{
