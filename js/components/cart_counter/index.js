@@ -9,13 +9,23 @@ var Counter = (function () {
         "basketSave" : 'basket'
     };
     function initCart() {
+        var basket = {
+            "counter": document.querySelector('#counter'),
+            "buttonCart" : document.querySelector('.add__button'),
+            "buttonOrder": document.querySelector('.order__button'),
+            "sectionDetails": document.querySelector("#details"),
+            "intermediate": 0,
+            "countSave" : 'count',
+            "basketSave" : 'basket'
+        };
+
         if(!localStorage.getItem(basket.countSave)){
             basket.counter.innerHTML = basket.intermediate;
         }else{
             basket.counter.innerHTML = localStorage.getItem(basket.countSave);
         }
-        basket.buttonCart && basket.sectionDetails.addEventListener('click', addDoCart);
-        basket.buttonCart && basket.sectionDetails.addEventListener('click', addDoBasket);
+        basket.buttonCart && basket.buttonCart.addEventListener('click', addDoCart);
+        basket.buttonCart && basket.buttonCart.addEventListener('click', addDoBasket);
         basket.buttonOrder && basket.buttonOrder.addEventListener('click', resetToCart);
     }
 

@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     let itemId = getShoes(response);  //выборка по id;
                     renderShoes(itemId);
                     initListeners();
-
+                    initCart();
                 }
                 if (sectionBreadcrumb) {
                     let breadcrumb = getGender(response); //отрисовка breadcrumb;
@@ -67,23 +67,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     function getCartTable(response) {
         let items = [];
-        let itemId = JSON.parse(localStorage.getItem("basket"));
-        let item;
-        for(let i = 0; i < itemId.length; i++){
-            for(let j = 0; j < response.length; j++){
-                if(itemId[i].id == response[j].id){
-                    response[j].sizes.filter(function (itemSize) {
-                        if(itemId[i].size !== itemSize){
-                            response[j].sizes.splice(response[j].sizes.indexOf(itemSize + 1));
-                            item = response[j];
-                            console.log(item);
-                        }
-                    });
-                }
-            }
-          items.push(item);
-
-        }
+        let itemsLocaleStorage = JSON.parse(localStorage.getItem("basket"));
+        itemsLocaleStorage.forEach(function(item){
+           response.filter(function (itemFromJSON) {
+               if(itemFromJSON.id == item.id){
+                   itemFromJSON.size = item.size;
+                   items.push(itemFromJSON);
+               }
+           })
+        });
         return items;
     }
 
@@ -139,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     function breadcrumbTemplate(gender) {
         return `<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item active" >${gender.category}</li>`;
+                        <li class="breadcrumb-item active" >${gender[0].category}</li>`;
 
     }
     function shoppingBagTemplate(items) {
@@ -160,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     <span>${items.color}</span>
                                 </td>
                                 <td class=" col-1 no-margin shoppingBag__table__size row align-center">
-                                    <span>${items.sizes[0]}</span>
+                                    <span>${items.size}</span>
                                 </td>
                                 <td class="col-1 no-margin shoppingBag__table__qty row align-center">
                                     <div class="row align-center">
@@ -194,12 +186,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
     function renderBreadcrumb(gender) {
-        let fragment = breadcrumbTemplate(gender[0]);
+        let fragment = breadcrumbTemplate(gender);
         if (sectionBreadcrumb) {
             sectionBreadcrumb.innerHTML = fragment;
         }
     }
-    function renderShoppingBag(items) {
+     function renderShoppingBag(items) {
+
         let fragment = items.map(shoppingBagTemplate).join('');
         if (sectionShoppingBag) {
             sectionShoppingBag.innerHTML = fragment;
@@ -212,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function initCart() {
         Counter.initCart();
     }
-    initCart();
+
     getFootwear();
 
 
