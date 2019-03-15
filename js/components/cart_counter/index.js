@@ -48,7 +48,7 @@ var Counter = (function () {
         return checkSize;
     }   //Выбор размера
     function CreatingCart() {
-        this.id = location.search.slice(1);
+        this.id = location.search.match(/\d+/g).join('');
         this.size = isCheck();
     } //Создание объестов в localeStorage;
     function addDoCart() {

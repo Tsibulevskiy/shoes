@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     function getShoes(response) {
         let items = [];
-        let shoesId = location.search.slice(1);
+        let shoesId = location.search.match(/\d+/g).join('');
         items = response.filter(function (item) {
             if (shoesId == item.id) {
                 return item;
@@ -78,11 +78,19 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         return items;
     }
+    function getBreadcrumbs() {
+        var itemsBreadcrumbs = [];
+        function ToCreateBreadcrimbs() {
+            this
+        }
+
+        return itemsBreadcrumbs;
+    }
 
     function genderTemplate(gender) {
         return `<div class="col-3 flex column coast__item justify-center align-center">
                                 <div class="product_image flex  align-center">
-                                    <a href="details.html?${gender.id}"><img src="${gender.photos[0]}" alt="shoes"></a>
+                                    <a href="details.html?cat=${gender.category}/id=${gender.id}"><img src="${gender.photos[0]}" alt="shoes"></a>
                                 </div>
                                 <h4>${gender.name}</h4>
                                 <div class="product__price">€ ${gender.price}</div>
@@ -206,8 +214,9 @@ document.addEventListener("DOMContentLoaded", function () {
         Counter.initCart();
     }
 
-    getFootwear();
 
+    getFootwear();
+    initCart();
 
 
 
