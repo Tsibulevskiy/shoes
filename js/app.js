@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     var itemId = getShoes(response);  //выборка по id;
                     renderShoes(itemId);
                     initListeners();
-
                 }
                 if (sectionBreadcrumb) {
                     var breadcrumb = getGender(response); //отрисовка breadcrumb;
@@ -39,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     var shoppingBag = getCartTable(response); //отрисовка Cart;
                     renderShoppingBag(shoppingBag);
                     initCartRender();
-                    removeItem();
                 }
                 initCart();
             }
@@ -169,15 +167,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div class="row align-center">
                             <span class="qty__number">${items.number}</span>
                             <div class="column no-gap no-margin">
-                                <button type="button" class="no-gap up__number">+</button>
-                                <button type="button" class="no-gap down__number">-</button>
+                                <button type="button" class="no-gap up__number" data-counter>+</button>
+                                <button type="button" class="no-gap down__number" data-counter1>-</button>
                             </div>
                         </div>
                     </td>
                     <td class="col-1 no-margin shoppingBag__table__amount row align-center">
                         <span>€ </span>
-                        <span class="amount"> ${items.price}</span>
-                        <button class="price__clear">X</button>
+                        <span class="amount" > ${items.price}</span>
+                        <button class="price__clear" data-clear>X</button>
                     </td>
                 </tr>`
     }
@@ -219,9 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function initCartRender() {
         CartRender.changeQuantity();
     }
-    function removeItem() {
-        CartRender.changeItem();
-    }
+
 
 
     getFootwear();
