@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (sectionShoppingBag) {
                     let shoppingBag = getCartTable(response); //отрисовка Cart;
                     renderShoppingBag(shoppingBag);
+                    initCartRender();
+                    removeItem();
                 }
             }
         });
@@ -56,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     function getShoes(response) {
         let items = [];
-        let shoesId = location.search.match(/\d+/g).join('');
+        let shoesId = location.hash.match(/\d+/g).join('');
         items = response.filter(function (item) {
             if (shoesId == item.id) {
                 return item;
@@ -72,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
            response.filter(function (itemFromJSON) {
                if(itemFromJSON.id == item.id){
                    itemFromJSON.size = item.size;
+                   itemFromJSON.number = item.number;
                    items.push(itemFromJSON);
                }
            })
@@ -81,16 +84,16 @@ document.addEventListener("DOMContentLoaded", function () {
     function getBreadcrumbs() {
         var itemsBreadcrumbs = [];
         function ToCreateBreadcrimbs() {
-            this
+            this.href = new URLSearchParams(location.search).get("cat");
         }
 
         return itemsBreadcrumbs;
-    }
+    } // в работе;
 
     function genderTemplate(gender) {
         return `<div class="col-3 flex column coast__item justify-center align-center">
                                 <div class="product_image flex  align-center">
-                                    <a href="details.html?cat=${gender.category}/id=${gender.id}"><img src="${gender.photos[0]}" alt="shoes"></a>
+                                    <a href="details.html?cat=${gender.category}#id=${gender.id}"><img src="${gender.photos[0]}" alt="shoes"></a>
                                 </div>
                                 <h4>${gender.name}</h4>
                                 <div class="product__price">€ ${gender.price}</div>
@@ -143,40 +146,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
     function shoppingBagTemplate(items) {
-        return `<tbody id="shopping_bag">
-                            <tr class="row">
-                                <td class=" col-1 no-margin shoppingBag__table__product">
-                                    <a href="#"><img src="${items.thumbnails[0]}" alt=""></a>
-                                </td>
-                                <td class=" col-6 no-margin shoppingBag__table__discription row align-center">
-                                    <div class="column col-12 no-margin no-gap">
-                                        <div class="col-12 column no-margin no-gap">
-                                            <h2>${items.name}</h2>
-                                            <h3>Ref.${items.article}</h3>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class=" col-2 no-margin shoppingBag__table__color row align-center">
-                                    <span>${items.color}</span>
-                                </td>
-                                <td class=" col-1 no-margin shoppingBag__table__size row align-center">
-                                    <span>${items.size}</span>
-                                </td>
-                                <td class="col-1 no-margin shoppingBag__table__qty row align-center">
-                                    <div class="row align-center">
-                                        <span>1</span>
-                                        <div class="column no-gap no-margin">
-                                            <button type="button" class="no-gap">+</button>
-                                            <button type="button" class="no-gap">-</button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="col-1 no-margin shoppingBag__table__amount row align-center">
-                                    <span>€ ${items.price}</span>
-                                    <span class="price__clear">X</span>
-                                </td>
-                            </tr>
-                        </tbody>`
+        return `<tr class="row  product" data-id="${items.id}">
+                    <td class=" col-1 no-margin shoppingBag__table__product">
+                        <a href="#"><img src="${items.thumbnails[0]}" alt=""></a>
+                    </td>
+                    <td class=" col-6 no-margin shoppingBag__table__discription row align-center">
+                        <div class="column col-12 no-margin no-gap">
+                            <div class="col-12 column no-margin no-gap">
+                                <h2>${items.name}</h2>
+                                <h3>Ref.${items.article}</h3>
+                            </div>
+                        </div>
+                    </td>
+                    <td class=" col-2 no-margin shoppingBag__table__color row align-center">
+                        <span>${items.color}</span>
+                    </td>
+                    <td class=" col-1 no-margin shoppingBag__table__size row align-center">
+                        <span>${items.size}</span>
+                    </td>
+                    <td class="col-1 no-margin shoppingBag__table__qty row align-center">
+                        <div class="row align-center">
+                            <span class="qty__number">${items.number}</span>
+                            <div class="column no-gap no-margin">
+                                <button type="button" class="no-gap up__number">+</button>
+                                <button type="button" class="no-gap down__number">-</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-1 no-margin shoppingBag__table__amount row align-center">
+                        <span>€ </span>
+                        <span class="amount"> ${items.price}</span>
+                        <button class="price__clear">X</button>
+                    </td>
+                </tr>`
     }
 
     function renderProducts(gender) {
@@ -199,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
             sectionBreadcrumb.innerHTML = fragment;
         }
     }
-     function renderShoppingBag(items) {
+    function renderShoppingBag(items) {
 
         let fragment = items.map(shoppingBagTemplate).join('');
         if (sectionShoppingBag) {
@@ -213,15 +215,17 @@ document.addEventListener("DOMContentLoaded", function () {
     function initCart() {
         Counter.initCart();
     }
+    function initCartRender() {
+        CartRender.changeQuantity();
+    }
+    function removeItem() {
+        CartRender.changeItem();
+    }
 
 
     getFootwear();
     initCart();
 
 
-
-
 });
-
-
 

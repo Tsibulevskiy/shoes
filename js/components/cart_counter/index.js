@@ -48,8 +48,9 @@ var Counter = (function () {
         return checkSize;
     }   //Выбор размера
     function CreatingCart() {
-        this.id = location.search.match(/\d+/g).join('');
+        this.id = location.hash.match(/\d+/g).join('');
         this.size = isCheck();
+        this.number = '1';
     } //Создание объестов в localeStorage;
     function addDoCart() {
             if(!localStorage.getItem(basket.countSave)){
