@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let categoryFootwear = document.querySelector('#coats');
-    let sectionDetails = document.querySelector("#details");
-    let sectionPreview = document.querySelector("#preview");
-    let sectionBreadcrumb = document.querySelector(".breadcrumb__menu");
-    let sectionShoppingBag = document.querySelector("#shopping_bag");
-    let basket = {
+    var categoryFootwear = document.querySelector('#coats');
+    var sectionDetails = document.querySelector("#details");
+    var sectionPreview = document.querySelector("#preview");
+    var sectionBreadcrumb = document.querySelector(".breadcrumb__menu");
+    var sectionShoppingBag = document.querySelector("#shopping_bag");
+    var basket = {
         "counter": document.querySelector('#counter'),
         "buttonCart": document.querySelector('.add__button'),
         "buttonOrder": document.querySelector('.order__button'),
@@ -15,40 +15,41 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     function getFootwear() {
-        let xhr = new XMLHttpRequest();
-        let response = [];
+        var xhr = new XMLHttpRequest();
+        var response = [];
         xhr.open('GET', 'shoes.json');
         xhr.addEventListener('readystatechange', function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 response = JSON.parse(xhr.responseText);
                 if (categoryFootwear) {
-                    let gender = getGender(response); //выборка по категории;
+                    var gender = getGender(response); //выборка по категории;
                     renderProducts(gender);
                 }
                 if (sectionDetails) {
-                    let itemId = getShoes(response);  //выборка по id;
+                    var itemId = getShoes(response);  //выборка по id;
                     renderShoes(itemId);
                     initListeners();
-                    initCart();
+
                 }
                 if (sectionBreadcrumb) {
-                    let breadcrumb = getGender(response); //отрисовка breadcrumb;
+                    var breadcrumb = getGender(response); //отрисовка breadcrumb;
                     renderBreadcrumb(breadcrumb);
                 }
                 if (sectionShoppingBag) {
-                    let shoppingBag = getCartTable(response); //отрисовка Cart;
+                    var shoppingBag = getCartTable(response); //отрисовка Cart;
                     renderShoppingBag(shoppingBag);
                     initCartRender();
                     removeItem();
                 }
+                initCart();
             }
         });
         xhr.send();
     }
 
     function getGender(response) {
-        let items = [];
-        let category = location.search.slice(5);
+        var items = [];
+        var category = location.search.slice(5);
         items = response.filter(function (item) {
             if (category == item.category) {
                 return item;
@@ -57,8 +58,8 @@ document.addEventListener("DOMContentLoaded", function () {
         return items;
     }
     function getShoes(response) {
-        let items = [];
-        let shoesId = location.hash.match(/\d+/g).join('');
+        var items = [];
+        var shoesId = location.hash.match(/\d+/g).join('');
         items = response.filter(function (item) {
             if (shoesId == item.id) {
                 return item;
@@ -68,8 +69,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
     function getCartTable(response) {
-        let items = [];
-        let itemsLocaleStorage = JSON.parse(localStorage.getItem("basket"));
+        var items = [];
+        var itemsLocaleStorage = JSON.parse(localStorage.getItem("basket"));
         itemsLocaleStorage.forEach(function(item){
            response.filter(function (itemFromJSON) {
                if(itemFromJSON.id == item.id){
@@ -102,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function shoesIdTemplate(itemId) {
         return `<div class="col-12 details__title"><h2>${itemId.name}</h2></div>
                             <div class="col-12 details__article"><h3>Article number:${itemId.article}</h3></div>
-                            <div class="col-12 detail__price"><p>€ ${itemId.price}</p></div>
+                            <div class="col-12 detail__price"><p> ${itemId.price}</p></div>
                             <div class="col-12 details__description"><p>Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis.Maecenas malesuada elit lectus felis, malesuada ultricies. </p></div>
                             <div class="col-12 details__size"><h3>Size</h3></div>
                             <div class="col-12 details__item row justify-center">
@@ -182,28 +183,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function renderProducts(gender) {
-        let fragment = gender.map(genderTemplate).join('');
+        var fragment = gender.map(genderTemplate).join('');
         if (categoryFootwear) {
             categoryFootwear.innerHTML = fragment;
         }
     }
     function renderShoes(itemId) {
-        let fragmentId = itemId.map(shoesIdTemplate).join('');
-        let fragmentPreview = itemId.map(shoesPreviewTemplate).join('');
+        var fragmentId = itemId.map(shoesIdTemplate).join('');
+        var fragmentPreview = itemId.map(shoesPreviewTemplate).join('');
         if (sectionDetails) {
             sectionPreview.innerHTML = fragmentPreview;
             sectionDetails.innerHTML = fragmentId;
         }
     }
     function renderBreadcrumb(gender) {
-        let fragment = breadcrumbTemplate(gender);
+        var fragment = breadcrumbTemplate(gender);
         if (sectionBreadcrumb) {
             sectionBreadcrumb.innerHTML = fragment;
         }
     }
     function renderShoppingBag(items) {
 
-        let fragment = items.map(shoppingBagTemplate).join('');
+        var fragment = items.map(shoppingBagTemplate).join('');
         if (sectionShoppingBag) {
             sectionShoppingBag.innerHTML = fragment;
         }
@@ -224,8 +225,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     getFootwear();
-    initCart();
-
-
 });
 

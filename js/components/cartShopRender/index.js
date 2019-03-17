@@ -28,12 +28,6 @@ var CartRender = (function () {
     function addToQuantity() {
         number ++;
         quantity.innerHTML = number ;
-
-        var fullPrise = number * price;
-
-
-        amount.innerHTML = fullPrise;
-
     } //Увеличение товара в корзине;
     function decreaseToQuantity() {
         if(number <= 1){

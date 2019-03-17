@@ -8,6 +8,7 @@ var Counter = (function () {
         "countSave" : 'count',
         "basketSave" : 'basket'
     };
+
     function initCart() {
         var basket = {
             "counter": document.querySelector('#counter'),
@@ -51,6 +52,7 @@ var Counter = (function () {
         this.id = location.hash.match(/\d+/g).join('');
         this.size = isCheck();
         this.number = '1';
+
     } //Создание объестов в localeStorage;
     function addDoCart() {
             if(!localStorage.getItem(basket.countSave)){
