@@ -1,6 +1,7 @@
 var Counter = (function () {
     var basket = {
         "counter": document.querySelector('#counter'),
+        "subtotal": document.querySelector(".total"),
         "buttonCart" : document.querySelector('.add__button'),
         "buttonOrder": document.querySelector('.order__button'),
         "sectionDetails": document.querySelector("#details"),
@@ -12,6 +13,7 @@ var Counter = (function () {
     function initCart() {
         var basket = {
             "counter": document.querySelector('#counter'),
+            "subtotal": document.querySelector(".total"),
             "buttonCart" : document.querySelector('.add__button'),
             "buttonOrder": document.querySelector('.order__button'),
             "sectionDetails": document.querySelector("#details"),
@@ -22,6 +24,7 @@ var Counter = (function () {
 
         if(!localStorage.getItem(basket.countSave)){
             basket.counter.innerHTML = basket.intermediate;
+
         }else{
             basket.counter.innerHTML = localStorage.getItem(basket.countSave);
         }
@@ -52,7 +55,6 @@ var Counter = (function () {
         this.id = location.hash.match(/\d+/g).join('');
         this.size = isCheck();
         this.number = '1';
-
     } //Создание объестов в localeStorage;
     function addDoCart() {
             if(!localStorage.getItem(basket.countSave)){
@@ -70,6 +72,7 @@ var Counter = (function () {
         basket.counter.innerHTML = basket.intermediate ;
         localStorage.removeItem(basket.countSave);
         localStorage.removeItem(basket.basketSave);
+        localStorage.removeItem("price");
     } //Ф-ция обнуление счетчика корзины;
     return {
             initCart: initCart

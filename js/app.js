@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var sectionShoppingBag = document.querySelector("#shopping_bag");
     var basket = {
         "counter": document.querySelector('#counter'),
+        "subtotal": document.querySelector(".total"),
         "buttonCart": document.querySelector('.add__button'),
         "buttonOrder": document.querySelector('.order__button'),
         "sectionDetails": document.querySelector("#details"),
@@ -41,8 +42,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 initCart();
             }
+
         });
         xhr.send();
+
     }
 
     function getGender(response) {
@@ -76,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
                    itemFromJSON.number = item.number;
                    items.push(itemFromJSON);
                }
+               localStorage.setItem("price", JSON.stringify(items))
            })
         });
         return items;
