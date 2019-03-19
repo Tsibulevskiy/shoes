@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <td class="col-1 no-margin shoppingBag__table__qty row align-center">
                         <div class="row align-center">
                             <span class="qty__number">${items.number}</span>
-                            <div class="column no-gap no-margin">
+                            <div class="column no-gap no-margin" data-id="${items.id}">
                                 <button type="button" class="no-gap up__number" data-counter>+</button>
                                 <button type="button" class="no-gap down__number" data-counter1>-</button>
                             </div>

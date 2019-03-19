@@ -11,7 +11,7 @@ var CartRender = (function () {
 
 
     function changeQuantity() {
-        quantity = document.querySelectorAll(".qty__number");
+        quantity = document.querySelector(".qty__number");
         product = document.querySelector(".product");
         upNumber = document.querySelector(".up__number");
         downNumber = document.querySelector(".down__number");
@@ -33,7 +33,6 @@ var CartRender = (function () {
         if(!event.target.hasAttribute('data-counter')) {
             return;
         }else{
-
             var counter = event.target.parentNode.previousElementSibling;
             counter.innerHTML ++ ;
             number = counter.textContent;
@@ -62,9 +61,10 @@ var CartRender = (function () {
         if(!event.target.hasAttribute('data-clear')) {
             return;
         }else{
-            console.log(event.target.parentNode.parentNode);
             var product = event.target.parentNode.parentNode;
             products.removeChild(product);
+            removeProductWithLS();
+            changeAmount();
             subtotal.innerHTML = sumProduct();
         }
     }  //Удаление товара в корзине
@@ -75,20 +75,28 @@ var CartRender = (function () {
             total += + item.price * item.number;
         });
         return total.toFixed(2);
-
     } //Общая цена;
     
     function changeAmount() {
         var itemsLocaleStorage = JSON.parse(localStorage.getItem("price"));
-        var data = event.target.parentNode.parentNode.parentNode.parentNode.dataset.id;
+        var dataId = product.dataset.id;
         itemsLocaleStorage.forEach(function (item) {
-            if(data == item.id  ){
+            if(dataId == item.id){
                 item.number = number;
-                console.log(item.number);
             }
         });
         localStorage.setItem("price", JSON.stringify(itemsLocaleStorage));
     }// Добавление в LocaleStorage количества продукта;
+    function removeProductWithLS() {
+        var itemsLocaleStorage = JSON.parse(localStorage.getItem("price"));
+        var dataId = product.dataset.id;
+        itemsLocaleStorage.forEach(function (item) {
+            if(dataId == item.id){
+                itemsLocaleStorage.pop(item);
+            }
+        });
+        localStorage.setItem("price", JSON.stringify(itemsLocaleStorage));
+    }
     return{
         changeQuantity: changeQuantity
     }
