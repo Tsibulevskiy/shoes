@@ -79,7 +79,7 @@ var CartRender = (function () {
     
     function changeAmount() {
         var itemsLocaleStorage = JSON.parse(localStorage.getItem("price"));
-        var dataId = product.dataset.id;
+        var dataId = event.target.parentNode.dataset.id;
         itemsLocaleStorage.forEach(function (item) {
             if(dataId == item.id){
                 item.number = number;

@@ -87,7 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function getBreadcrumbs() {
         var itemsBreadcrumbs = [];
         function ToCreateBreadcrimbs() {
-            this.href = new URLSearchParams(location.search).get("cat");
+            this.category = new URLSearchParams(location.search).get("cat");
+            // this.id =
         }
 
         return itemsBreadcrumbs;
