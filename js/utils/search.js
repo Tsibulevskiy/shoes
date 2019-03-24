@@ -1,5 +1,5 @@
 //
-;(function () {
+var Search = (function () {
     var searchButton = document.querySelector(".search__button");
     var searchInput = document.querySelector(".search__input");
     var searchContainer = document.querySelector('.header__search');
@@ -23,5 +23,19 @@
         searchContainer.classList.remove("row-xs");
         basketContainer.classList.remove("col-xs-7");
     }
+    function toSearch() {
+        var name = searchInput.value;
+        return console.log(name);
+    }
+    function initSearch() {
+            var searchInput = document.querySelector(".search__input");
+            searchInput && searchInput.addEventListener('input', toSearch);
+    }
+
+    return{
+        initSearch: initSearch
+
+    }
+
 
 })();
