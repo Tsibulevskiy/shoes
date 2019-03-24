@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="490c233d-905f-44ee-8a48-6daafe744b44" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/utils/search.js" afterPath="$PROJECT_DIR$/js/utils/search.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -494,7 +491,7 @@
       <workItem from="1553274047839" duration="4447000" />
       <workItem from="1553371454158" duration="7010000" />
       <workItem from="1553456553951" duration="8000" />
-      <workItem from="1553456628101" duration="3543000" />
+      <workItem from="1553456628101" duration="3574000" />
     </task>
     <task id="LOCAL-00001" summary="Динамическое добавление Breadcrambs">
       <created>1551735253512</created>
@@ -622,11 +619,18 @@
       <option name="project" value="LOCAL" />
       <updated>1553023170679</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="24.03 промежуточный коммит">
+      <created>1553460250756</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1553460250756</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="426881000" />
+    <option name="totallyTimeSpent" value="426912000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="0" />
@@ -690,7 +694,8 @@
     <MESSAGE value="18/03 сумма не пересчитывается после удаления продукта" />
     <MESSAGE value="19/03 Корзна полностью работает" />
     <MESSAGE value="19/03 Корзна полностью работает 1/1" />
-    <option name="LAST_COMMIT_MESSAGE" value="19/03 Корзна полностью работает 1/1" />
+    <MESSAGE value="24.03 промежуточный коммит" />
+    <option name="LAST_COMMIT_MESSAGE" value="24.03 промежуточный коммит" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
