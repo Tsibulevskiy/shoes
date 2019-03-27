@@ -3,9 +3,11 @@
   .preview__nav{
     padding-bottom: $gutter;
     position: relative;
+
     li{
         border: 1px solid $light-gray;
         margin: $gutter 0;
+
       a{
         img{
           width: 70px;

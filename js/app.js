@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 response = JSON.parse(xhr.responseText);
                 if(sectionSearch){
+                    initSearch();
                     getSearch(response);
                 }
-
                 if (categoryFootwear) {
                     var gender = getGender(response); //выборка по категории;
                     renderProducts(gender);
@@ -52,13 +52,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function getSearch(response) {
-        response.forEach(function (item) {
-            var name = initSearch();
-            console.log(item.name);
-            if(name == item.name){
-                console.log(item);
-            }
-        })
+
+
 
     }// В работе
 
@@ -99,7 +94,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return items;
     }
     function getBreadcrumbs() {
-        console.log(new URLSearchParams(location.search));
         function ToCreateBreadcrimbs() {
             this.href = "HOME";
             this.category = new URLSearchParams(location.search).get("cat");
@@ -111,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } // в работе;
 
     function genderTemplate(gender) {
-        return `<div class="col-3 flex column coast__item justify-center align-center">
+        return `<div class="col-3 col-s-6 col-m-6 flex column coast__item justify-center align-center">
                                 <div class="product_image flex  align-center">
                                     <a href="details.html?cat=${gender.category}&id=${gender.id}#id=${gender.id}"><img src="${gender.photos[0]}" alt="shoes"></a>
                                 </div>
@@ -143,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <button class="add__button " type="button">add do cart</button></div>`;
     }
     function shoesPreviewTemplate(itemId) {
-        return ` <ul class="preview__nav order-2 align-self-end  ">
+        return ` <ul class="preview__nav row-m  order-2 align-self-end align-center ">
                             <li><a href="#link1" class="preview__link active__link"><img
                                     src="${itemId.thumbnails[0]}" alt=""></a></li>
                             <li><a href="#link2" class="preview__link"><img
@@ -151,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <li><a href="#link3" class="preview__link"><img
                                     src="${itemId.thumbnails[2]}" alt=""></a></li>
                         </ul>
-                        <div class="preview__content ">
+                        <div class="preview__content col-10">
                             <div id="link1" class="preview__item"><img
                                     src="${itemId.photos[0]}" alt="foto"></div>
                             <div id="link2" class="preview__item hidden"><img

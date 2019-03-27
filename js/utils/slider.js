@@ -14,19 +14,16 @@
     carouselContainerUl.style.width = carouselWidth*carouselItem.length + 'px';
     //Задаем ширину li
     Array.from(carouselItem).forEach(function (item) {
-       item.style.width = 10/carouselItem.length + '%';
+       item.style.width = 25/carouselItem.length + '%';
     });
-    Array.prototype.forEach.call(carouselItem, function (n) {
-        
-    });
-    
+
       //задержка для transition;
       setTimeout(function () {
           carouselContainerUl.style.transition = '300ms ease';
-      },1000);
+      },600);
     //Основная функция карусели;
     function changeCarousel() {
-         carouselContainerUl.style.transform = "translateX(-"+ 2*activeIndex*carouselWidth/carouselItem.length +"px)";
+         carouselContainerUl.style.transform = "translateX(-"+ activeIndex*carouselWidth/carouselItem.length +"px)";
     }
     //Обработчик события на кнопку next;
     carouselNext.addEventListener('click', function () {

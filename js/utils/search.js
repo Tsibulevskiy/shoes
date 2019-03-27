@@ -32,6 +32,7 @@ var Search = (function () {
             searchInput && searchInput.addEventListener('input', toSearch);
     }
 
+
     return{
         initSearch: initSearch
 
