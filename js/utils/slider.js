@@ -23,7 +23,9 @@
       },600);
     //Основная функция карусели;
     function changeCarousel() {
+            clearInterval(timer);
          carouselContainerUl.style.transform = "translateX(-"+ activeIndex*carouselWidth/carouselItem.length +"px)";
+
     }
     //Обработчик события на кнопку next;
     carouselNext.addEventListener('click', function () {
@@ -37,4 +39,12 @@
         activeIndex--;
         changeCarousel();
     });
+
+
+    var carouselDuration = 2000;
+    var timer;
+   setInterval(function () {
+       carouselNext.click();
+   }, carouselDuration) ;
+
 })();

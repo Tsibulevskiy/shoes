@@ -2061,13 +2061,13 @@ button, input {
   top: 51px;
   right: 51px;
   width: 50px;
-  height: 120px;
+  height: 75%;
   background-color: rgba(163, 163, 163, 0.6);
   text-align: center;
-  line-height: 125px;
+  line-height: 300px;
   font-size: 28px;
   transition: 300ms ease;
-  opacity: 0.5;
+  opacity: 0.2;
   z-index: 3; }
   #carousel__navigation span:hover {
     opacity: 1; }
