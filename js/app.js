@@ -1,5 +1,20 @@
 
 document.addEventListener("DOMContentLoaded", function () {
+    var Module = (function(){
+        var items = [];
+
+        function getFootwear(){
+            //onreadystatechange
+            items = JSON.parse(xhr.responseText);
+        }
+
+        function getItems(){
+            return items;
+        }
+        return {
+            getItems: getItems
+        };
+    })();
     var categoryFootwear = document.querySelector('#coats');
     var sectionSearch = document.querySelector('.search');
     var sectionDetails = document.querySelector("#details");
@@ -99,9 +114,32 @@ document.addEventListener("DOMContentLoaded", function () {
             this.category = new URLSearchParams(location.search).get("cat");
             this.id = new URLSearchParams(location.search).get("id");
         }
-        var itemBreadcrumbs = new ToCreateBreadcrimbs();
-        return itemBreadcrumbs;
 
+        function BreadCrumbsItem(params){
+            this.title = params.title;
+            this.href = params.href;
+        }
+
+        var itemBreadcrumbs = new ToCreateBreadcrimbs();
+        //return itemBreadcrumbs;
+        var locationParams = new URLSearchParams(location.search);
+        var id = locationParams.get('id');
+        var category = locationParams.get('cat');
+        var breadcrumbs = [];
+        breadcrumbs.push({title: 'home', href: '/index.html'});
+
+        if (id) {
+            //мы на странице товара
+            //var product = getProductById(id);
+            //breadcrumbs.push({title: product.title});
+            breadcrumbs.push({title: category, href: `/cat.html?cat=${category}`});
+            breadcrumbs.push({title: `product ${id}`});
+        } else {
+            //мы на странице категорий
+            breadcrumbs.push({title: category, href: `/cat.html?cat=${category}`});
+        }
+
+        return breadcrumbs;
     } // в работе;
 
     function genderTemplate(gender) {
@@ -161,6 +199,12 @@ document.addEventListener("DOMContentLoaded", function () {
                            `;
 
     }
+    function breadCrumb(item){
+        return `<li class="breadcrumb-item">
+                ${item.href ? `<a href="${item.href}">${item.title}</a>` : item.title}
+               </li>`;
+    }
+
     function shoppingBagTemplate(items) {
         return `<tr class="row  product" data-id="${items.id}">
                     <td class=" col-1 no-margin shoppingBag__table__product">
@@ -212,7 +256,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
     function renderBreadcrumb(itemBreadcrumbs) {
-        var fragment = breadcrumbTemplate(itemBreadcrumbs);
+        //var fragment = breadcrumbTemplate(itemBreadcrumbs);
+        var fragment = itemBreadcrumbs.map(breadCrumb).join('');
         if (sectionBreadcrumb) {
             sectionBreadcrumb.innerHTML = fragment;
         }

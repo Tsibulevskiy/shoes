@@ -24,7 +24,6 @@ var Counter = (function () {
 
         if(!localStorage.getItem(basket.countSave)){
             basket.counter.innerHTML = basket.intermediate;
-
         }else{
             basket.counter.innerHTML = localStorage.getItem(basket.countSave);
         }
@@ -32,20 +31,25 @@ var Counter = (function () {
         basket.buttonCart && basket.buttonCart.addEventListener('click', addDoBasket);
         basket.buttonOrder && basket.buttonOrder.addEventListener('click', resetToCart);
     }
-
     function addDoBasket() {
+        var shopCartItem;
         if(!localStorage.getItem(basket.basketSave)){
             var shopBasket = [];
+            shopCartItem = new CreatingCart();
+            shopBasket.push(shopCartItem);
+            localStorage.setItem(basket.basketSave, JSON.stringify(shopBasket));
         }else{
             shopBasket = JSON.parse(localStorage.getItem(basket.basketSave));
+            shopCartItem = new CreatingCart();
+            var duplicate = shopBasket.filter(function (item) {
+                return item.id == shopCartItem.id;
+            });
+            if (duplicate.length < 1) {
+                shopBasket.push(shopCartItem);
+            }
+            localStorage.setItem(basket.basketSave, JSON.stringify(shopBasket));
+            console.log(duplicate);
         }
-        var shopCartItem = new CreatingCart();
-        shopBasket.push(shopCartItem);
-         localStorage.setItem(basket.basketSave, JSON.stringify(shopBasket));
-
-
-
-
     } //Ф-ция добавления в LocaleStorage;
     function isCheck(checkSize) {
         checkSize= document.querySelector('input:checked').id;
@@ -57,15 +61,15 @@ var Counter = (function () {
         this.number = '1';
     } //Создание объестов в localeStorage;
     function addDoCart() {
-            if(!localStorage.getItem(basket.countSave)){
+        var count = JSON.parse(localStorage.getItem(basket.countSave));
+            if(!count){
                 basket.intermediate ++;
             }else{
-                var count = localStorage.getItem(basket.countSave);
                 basket.intermediate = count;
                 basket.intermediate ++;
             }
             basket.counter.innerHTML = basket.intermediate ;
-            localStorage.setItem(basket.countSave, basket.intermediate);
+            localStorage.setItem(basket.countSave, JSON.stringify(basket.intermediate));
         }//Ф-ция увеличения счетчика корзины;
     function resetToCart() {
         basket.intermediate = 0;
@@ -74,6 +78,7 @@ var Counter = (function () {
         localStorage.removeItem(basket.basketSave);
         localStorage.removeItem("price");
     } //Ф-ция обнуление счетчика корзины;
+
     return {
             initCart: initCart
     }
