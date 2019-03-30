@@ -2,7 +2,7 @@
  * Slider
  */
 (function () {
-    var items = Module.getItems();
+    // var items = Module.getItems();
     var activeIndex = 0;
     var carousel = document.querySelector('#carousel');
     var carouselContainer = document.querySelector('.carousel__container');
@@ -20,18 +20,22 @@
 
       //задержка для transition;
       setTimeout(function () {
-          carouselContainerUl.style.transition = '300ms ease';
+          carouselContainerUl.style.transition = '900ms ease';
       },600);
     //Основная функция карусели;
     function changeCarousel() {
             clearInterval(timer);
          carouselContainerUl.style.transform = "translateX(-"+ activeIndex*carouselWidth/carouselItem.length +"px)";
 
+
     }
     //Обработчик события на кнопку next;
     carouselNext.addEventListener('click', function () {
          activeIndex++;
-                carouselContainerUl.appendChild(carouselItem[0]);
+         setTimeout(function () {
+             carouselContainerUl.appendChild(carouselItem[0]);
+         },1000);
+
         changeCarousel();
     });
     //Обработчик события на кнопку prev;

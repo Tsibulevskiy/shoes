@@ -1,158 +1,143 @@
 
 document.addEventListener("DOMContentLoaded", function () {
-    var Module = (function(){
-        var items = [];
 
-        function getFootwear(){
-            //onreadystatechange
-            items = JSON.parse(xhr.responseText);
-        }
+ var App = (function () {
+     var response = [];
+     var categoryFootwear = document.querySelector('#coats');
+     var sectionSearch = document.querySelector('.search');
+     var sectionDetails = document.querySelector("#details");
+     var sectionPreview = document.querySelector("#preview");
+     var sectionBreadcrumb = document.querySelector(".breadcrumb__menu");
+     var sectionShoppingBag = document.querySelector("#shopping_bag");
+     var basket = {
+         "counter": document.querySelector('#counter'),
+         "subtotal": document.querySelector(".total"),
+         "buttonCart": document.querySelector('.add__button'),
+         "buttonOrder": document.querySelector('.order__button'),
+         "sectionDetails": document.querySelector("#details"),
+         "intermediate": 0,
+         "countSave": 'count',
+         "basketSave": 'Cart'
+     };
+     function getResponse() {
+         return response;
+     }
+     function getFootwear() {
+         var xhr = new XMLHttpRequest();
 
-        function getItems(){
-            return items;
-        }
-        return {
-            getItems: getItems
-        };
-    })();
-    var categoryFootwear = document.querySelector('#coats');
-    var sectionSearch = document.querySelector('.search');
-    var sectionDetails = document.querySelector("#details");
-    var sectionPreview = document.querySelector("#preview");
-    var sectionBreadcrumb = document.querySelector(".breadcrumb__menu");
-    var sectionShoppingBag = document.querySelector("#shopping_bag");
-    var basket = {
-        "counter": document.querySelector('#counter'),
-        "subtotal": document.querySelector(".total"),
-        "buttonCart": document.querySelector('.add__button'),
-        "buttonOrder": document.querySelector('.order__button'),
-        "sectionDetails": document.querySelector("#details"),
-        "intermediate": 0,
-        "countSave": 'count',
-        "basketSave": 'Cart'
-    };
-    function getFootwear() {
-        var xhr = new XMLHttpRequest();
-        var response = [];
-        xhr.open('GET', 'shoes.json');
-        xhr.addEventListener('readystatechange', function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                response = JSON.parse(xhr.responseText);
-                if(sectionSearch){
-                    initSearch();
-                    getSearch(response);
-                }
-                if (categoryFootwear) {
-                    var gender = getGender(response); //выборка по категории;
-                    renderProducts(gender);
-                }
-                if (sectionDetails) {
-                    var itemId = getShoes(response);  //выборка по id;
-                    renderShoes(itemId);
-                    initListeners();
-                }
-                if (sectionBreadcrumb) {
-                    var breadcrumb = getBreadcrumbs(); //отрисовка breadcrumb;
-                    renderBreadcrumb(breadcrumb);
-                }
-                if (sectionShoppingBag) {
-                    var shoppingBag = getCartTable(response); //отрисовка Cart;
-                    renderShoppingBag(shoppingBag);
-                    initCartRender();
-                }
-                initCart();
-            }
-        });
-        xhr.send();
-    }
+         xhr.open('GET', 'shoes.json');
+         xhr.addEventListener('readystatechange', function () {
+             if (xhr.readyState == 4 && xhr.status == 200) {
+                 response = JSON.parse(xhr.responseText);
+                 if(sectionSearch){
+                     initSearch();
 
-    function getSearch(response) {
+                 }
+                 if (categoryFootwear) {
+                     var gender = getGender(response); //выборка по категории;
+                     renderProducts(gender);
+                 }
+                 if (sectionDetails) {
+                     var itemId = getShoes(response);  //выборка по id;
+                     renderShoes(itemId);
+                     initListeners();
+                 }
+                 if (sectionBreadcrumb) {
+                     var breadcrumb = getBreadcrumbs(); //отрисовка breadcrumb;
+                     renderBreadcrumb(breadcrumb);
+                 }
+                 if (sectionShoppingBag) {
+                     var shoppingBag = getCartTable(response); //отрисовка Cart;
+                     renderShoppingBag(shoppingBag);
+                     initCartRender();
+                 }
+                 initCart();
+             }
+         });
+         xhr.send();
+     }
 
+     function getGender(response) {
+         var items = [];
+         var category = location.search.slice(5);
+         items = response.filter(function (item) {
+             if (category == item.category) {
+                 return item;
+             }
+         });
+         return items;
+     }
+     function getShoes(response) {
+         var items = [];
+         var shoesId = location.hash.match(/\d+/g).join('');
+         items = response.filter(function (item) {
+             if (shoesId == item.id) {
+                 return item;
+             }
+         });
+         return items;
 
+     }
+     function getCartTable(response) {
+         var items = [];
+         var itemsLocaleStorage = JSON.parse(localStorage.getItem("basket"));
+         itemsLocaleStorage.forEach(function(item){
+             response.filter(function (itemFromJSON) {
+                 if(itemFromJSON.id == item.id){
+                     itemFromJSON.size = item.size;
+                     itemFromJSON.number = item.number;
+                     items.push(itemFromJSON);
+                 }
+                 localStorage.setItem("price", JSON.stringify(items))
+             })
+         });
+         return items;
+     }
+     function getBreadcrumbs() {
+         function ToCreateBreadcrimbs() {
+             this.href = "HOME";
+             this.category = new URLSearchParams(location.search).get("cat");
+             this.id = new URLSearchParams(location.search).get("id");
+         }
 
-    }// В работе
+         function BreadCrumbsItem(params){
+             this.title = params.title;
+             this.href = params.href;
+         }
 
-    function getGender(response) {
-        var items = [];
-        var category = location.search.slice(5);
-        items = response.filter(function (item) {
-            if (category == item.category) {
-                return item;
-            }
-        });
-        return items;
-    }
-    function getShoes(response) {
-        var items = [];
-        var shoesId = location.hash.match(/\d+/g).join('');
-        items = response.filter(function (item) {
-            if (shoesId == item.id) {
-                return item;
-            }
-        });
-        return items;
+         var itemBreadcrumbs = new ToCreateBreadcrimbs();
+         //return itemBreadcrumbs;
+         var locationParams = new URLSearchParams(location.search);
+         var id = locationParams.get('id');
+         var category = locationParams.get('cat');
+         var breadcrumbs = [];
+         breadcrumbs.push({title: 'home', href: '/index.html'});
 
-    }
-    function getCartTable(response) {
-        var items = [];
-        var itemsLocaleStorage = JSON.parse(localStorage.getItem("basket"));
-        itemsLocaleStorage.forEach(function(item){
-           response.filter(function (itemFromJSON) {
-               if(itemFromJSON.id == item.id){
-                   itemFromJSON.size = item.size;
-                   itemFromJSON.number = item.number;
-                   items.push(itemFromJSON);
-               }
-               localStorage.setItem("price", JSON.stringify(items))
-           })
-        });
-        return items;
-    }
-    function getBreadcrumbs() {
-        function ToCreateBreadcrimbs() {
-            this.href = "HOME";
-            this.category = new URLSearchParams(location.search).get("cat");
-            this.id = new URLSearchParams(location.search).get("id");
-        }
+         if (id) {
+             //мы на странице товара
+             //var product = getProductById(id);
+             //breadcrumbs.push({title: product.title});
+             breadcrumbs.push({title: category, href: `/cat.html?cat=${category}`});
+             breadcrumbs.push({title: `product ${id}`});
+         } else {
+             //мы на странице категорий
+             breadcrumbs.push({title: category, href: `/cat.html?cat=${category}`});
+         }
 
-        function BreadCrumbsItem(params){
-            this.title = params.title;
-            this.href = params.href;
-        }
+         return breadcrumbs;
+     } // в работе;
 
-        var itemBreadcrumbs = new ToCreateBreadcrimbs();
-        //return itemBreadcrumbs;
-        var locationParams = new URLSearchParams(location.search);
-        var id = locationParams.get('id');
-        var category = locationParams.get('cat');
-        var breadcrumbs = [];
-        breadcrumbs.push({title: 'home', href: '/index.html'});
-
-        if (id) {
-            //мы на странице товара
-            //var product = getProductById(id);
-            //breadcrumbs.push({title: product.title});
-            breadcrumbs.push({title: category, href: `/cat.html?cat=${category}`});
-            breadcrumbs.push({title: `product ${id}`});
-        } else {
-            //мы на странице категорий
-            breadcrumbs.push({title: category, href: `/cat.html?cat=${category}`});
-        }
-
-        return breadcrumbs;
-    } // в работе;
-
-    function genderTemplate(gender) {
-        return `<div class="col-3 col-s-6 col-m-6 flex column coast__item justify-center align-center">
+     function genderTemplate(gender) {
+         return `<div class="col-3 col-s-6 col-m-6 flex column coast__item justify-center align-center">
                                 <div class="product_image flex  align-center">
                                     <a href="details.html?cat=${gender.category}&id=${gender.id}#id=${gender.id}"><img src="${gender.photos[0]}" alt="shoes"></a>
                                 </div>
                                 <h4>${gender.name}</h4>
                                 <div class="product__price">€ ${gender.price}</div>
                             </div>`;
-    }
-    function shoesIdTemplate(itemId) {
-        return `<div class="col-12 details__title"><h2>${itemId.name}</h2></div>
+     }
+     function shoesIdTemplate(itemId) {
+         return `<div class="col-12 details__title"><h2>${itemId.name}</h2></div>
                             <div class="col-12 details__article"><h3>Article number:${itemId.article}</h3></div>
                             <div class="col-12 detail__price"><p> ${itemId.price}</p></div>
                             <div class="col-12 details__description"><p>Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis.Maecenas malesuada elit lectus felis, malesuada ultricies. </p></div>
@@ -173,9 +158,9 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                             <div class="col-12 details__button row justify-center">
                             <button class="add__button " type="button">add do cart</button></div>`;
-    }
-    function shoesPreviewTemplate(itemId) {
-        return ` <ul class="preview__nav row-m  order-2 align-self-end align-center ">
+     }
+     function shoesPreviewTemplate(itemId) {
+         return ` <ul class="preview__nav row-m  order-2 align-self-end align-center ">
                             <li><a href="#link1" class="preview__link active__link"><img
                                     src="${itemId.thumbnails[0]}" alt=""></a></li>
                             <li><a href="#link2" class="preview__link"><img
@@ -191,22 +176,22 @@ document.addEventListener("DOMContentLoaded", function () {
                             <div id="link3" class="preview__item hidden"><img
                                     src="${itemId.photos[2]}" alt="foto"></div>
                         </div>`;
-    }
-    function breadcrumbTemplate(itemBreadcrumbs) {
-        console.log(itemBreadcrumbs);
-        return `<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+     }
+     function breadcrumbTemplate(itemBreadcrumbs) {
+         console.log(itemBreadcrumbs);
+         return `<li class="breadcrumb-item"><a href="index.html">Home</a></li>
                         <li class="breadcrumb-item active" >${itemBreadcrumbs.category}</li>
                            `;
 
-    }
-    function breadCrumb(item){
-        return `<li class="breadcrumb-item">
+     }
+     function breadCrumb(item){
+         return `<li class="breadcrumb-item">
                 ${item.href ? `<a href="${item.href}">${item.title}</a>` : item.title}
                </li>`;
-    }
+     }
 
-    function shoppingBagTemplate(items) {
-        return `<tr class="row  product" data-id="${items.id}">
+     function shoppingBagTemplate(items) {
+         return `<tr class="row  product" data-id="${items.id}">
                     <td class=" col-1 no-margin shoppingBag__table__product">
                         <a href="#"><img src="${items.thumbnails[0]}" alt=""></a>
                     </td>
@@ -239,52 +224,52 @@ document.addEventListener("DOMContentLoaded", function () {
                         <button class="price__clear" data-clear>X</button>
                     </td>
                 </tr>`
-    }
+     }
+     function renderProducts(gender) {
+         var fragment = gender.map(genderTemplate).join('');
+         if (categoryFootwear) {
+             categoryFootwear.innerHTML = fragment;
+         }
+     }
+     function renderShoes(itemId) {
+         var fragmentId = itemId.map(shoesIdTemplate).join('');
+         var fragmentPreview = itemId.map(shoesPreviewTemplate).join('');
+         if (sectionDetails) {
+             sectionPreview.innerHTML = fragmentPreview;
+             sectionDetails.innerHTML = fragmentId;
+         }
+     }
+     function renderBreadcrumb(itemBreadcrumbs) {
+         var fragment = itemBreadcrumbs.map(breadCrumb).join('');
+         if (sectionBreadcrumb) {
+             sectionBreadcrumb.innerHTML = fragment;
+         }
+     }
+     function renderShoppingBag(items) {
 
-    function renderProducts(gender) {
-        var fragment = gender.map(genderTemplate).join('');
-        if (categoryFootwear) {
-            categoryFootwear.innerHTML = fragment;
-        }
-    }
-    function renderShoes(itemId) {
-        var fragmentId = itemId.map(shoesIdTemplate).join('');
-        var fragmentPreview = itemId.map(shoesPreviewTemplate).join('');
-        if (sectionDetails) {
-            sectionPreview.innerHTML = fragmentPreview;
-            sectionDetails.innerHTML = fragmentId;
-        }
-    }
-    function renderBreadcrumb(itemBreadcrumbs) {
-        //var fragment = breadcrumbTemplate(itemBreadcrumbs);
-        var fragment = itemBreadcrumbs.map(breadCrumb).join('');
-        if (sectionBreadcrumb) {
-            sectionBreadcrumb.innerHTML = fragment;
-        }
-    }
-    function renderShoppingBag(items) {
+         var fragment = items.map(shoppingBagTemplate).join('');
+         if (sectionShoppingBag) {
+             sectionShoppingBag.innerHTML = fragment;
+         }
+     }
 
-        var fragment = items.map(shoppingBagTemplate).join('');
-        if (sectionShoppingBag) {
-            sectionShoppingBag.innerHTML = fragment;
-        }
-    }
+     function initListeners() {
+         Preview.initListeners();
+     }
+     function initCart() {
+         Counter.initCart();
+     }
+     function initCartRender() {
+         CartRender.changeQuantity();
+     }
+     function initSearch() {
+         Search.initSearch();
+     }
+     getFootwear();
+     return{
+         getResponse: getResponse
+     }
+ })();
 
-    function initListeners() {
-        Preview.initListeners();
-    }
-    function initCart() {
-        Counter.initCart();
-    }
-    function initCartRender() {
-        CartRender.changeQuantity();
-    }
-    function initSearch() {
-        Search.initSearch();
-    }
-
-
-
-    getFootwear();
 });
 
