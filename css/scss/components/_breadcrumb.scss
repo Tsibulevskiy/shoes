@@ -2,11 +2,13 @@
 .breadcrumb__menu{
   padding: $gutter;
   li{
-    display: inline-block;
+    display: inline;
     font-size: 12px;
     text-transform: uppercase;
+
     +li:before{
-      padding: $gutter;
+      display: inline-block;
+
       color: $dark-grey;
       content: "/\00a0";
     }

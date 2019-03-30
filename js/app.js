@@ -1,10 +1,8 @@
 
 document.addEventListener("DOMContentLoaded", function () {
-
  var App = (function () {
      var response = [];
      var categoryFootwear = document.querySelector('#coats');
-     var sectionSearch = document.querySelector('.search');
      var sectionDetails = document.querySelector("#details");
      var sectionPreview = document.querySelector("#preview");
      var sectionBreadcrumb = document.querySelector(".breadcrumb__menu");
@@ -29,10 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
          xhr.addEventListener('readystatechange', function () {
              if (xhr.readyState == 4 && xhr.status == 200) {
                  response = JSON.parse(xhr.responseText);
-                 if(sectionSearch){
-                     initSearch();
-
-                 }
                  if (categoryFootwear) {
                      var gender = getGender(response); //выборка по категории;
                      renderProducts(gender);
@@ -94,38 +88,33 @@ document.addEventListener("DOMContentLoaded", function () {
          return items;
      }
      function getBreadcrumbs() {
-         function ToCreateBreadcrimbs() {
-             this.href = "HOME";
-             this.category = new URLSearchParams(location.search).get("cat");
-             this.id = new URLSearchParams(location.search).get("id");
-         }
-
-         function BreadCrumbsItem(params){
-             this.title = params.title;
-             this.href = params.href;
-         }
-
-         var itemBreadcrumbs = new ToCreateBreadcrimbs();
-         //return itemBreadcrumbs;
          var locationParams = new URLSearchParams(location.search);
          var id = locationParams.get('id');
          var category = locationParams.get('cat');
          var breadcrumbs = [];
          breadcrumbs.push({title: 'home', href: '/index.html'});
-
          if (id) {
-             //мы на странице товара
-             //var product = getProductById(id);
-             //breadcrumbs.push({title: product.title});
+             var product = getProductById(response);
+             console.log(product[0].name);
              breadcrumbs.push({title: category, href: `/cat.html?cat=${category}`});
-             breadcrumbs.push({title: `product ${id}`});
+             breadcrumbs.push({title: `${product[0].name}`});
          } else {
-             //мы на странице категорий
              breadcrumbs.push({title: category, href: `/cat.html?cat=${category}`});
          }
-
          return breadcrumbs;
-     } // в работе;
+     }
+     function getProductById(response) {
+         var items = [];
+         var productId =  new URLSearchParams(location.search).get('id');
+         items = response.filter(function (item) {
+             if(item.id == productId){
+                 return item;
+             }
+         });
+
+         return items;
+
+     }
 
      function genderTemplate(gender) {
          return `<div class="col-3 col-s-6 col-m-6 flex column coast__item justify-center align-center">
@@ -177,19 +166,11 @@ document.addEventListener("DOMContentLoaded", function () {
                                     src="${itemId.photos[2]}" alt="foto"></div>
                         </div>`;
      }
-     function breadcrumbTemplate(itemBreadcrumbs) {
-         console.log(itemBreadcrumbs);
-         return `<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item active" >${itemBreadcrumbs.category}</li>
-                           `;
-
-     }
-     function breadCrumb(item){
-         return `<li class="breadcrumb-item">
+     function breadcrumbTemplate(item){
+         return `<li class="breadcrumb-item no-margin">
                 ${item.href ? `<a href="${item.href}">${item.title}</a>` : item.title}
                </li>`;
      }
-
      function shoppingBagTemplate(items) {
          return `<tr class="row  product" data-id="${items.id}">
                     <td class=" col-1 no-margin shoppingBag__table__product">
@@ -225,6 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     </td>
                 </tr>`
      }
+
      function renderProducts(gender) {
          var fragment = gender.map(genderTemplate).join('');
          if (categoryFootwear) {
@@ -240,13 +222,12 @@ document.addEventListener("DOMContentLoaded", function () {
          }
      }
      function renderBreadcrumb(itemBreadcrumbs) {
-         var fragment = itemBreadcrumbs.map(breadCrumb).join('');
+         var fragment = itemBreadcrumbs.map(breadcrumbTemplate).join('');
          if (sectionBreadcrumb) {
              sectionBreadcrumb.innerHTML = fragment;
          }
      }
      function renderShoppingBag(items) {
-
          var fragment = items.map(shoppingBagTemplate).join('');
          if (sectionShoppingBag) {
              sectionShoppingBag.innerHTML = fragment;
@@ -262,9 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
      function initCartRender() {
          CartRender.changeQuantity();
      }
-     function initSearch() {
-         Search.initSearch();
-     }
+
      getFootwear();
      return{
          getResponse: getResponse

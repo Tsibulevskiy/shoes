@@ -2099,11 +2099,11 @@ button, input {
 .breadcrumb__menu {
   padding: 2%; }
   .breadcrumb__menu li {
-    display: inline-block;
+    display: inline;
     font-size: 12px;
     text-transform: uppercase; }
     .breadcrumb__menu li + li:before {
-      padding: 2%;
+      display: inline-block;
       color: #303030;
       content: "/\00a0"; }
     .breadcrumb__menu li a {
