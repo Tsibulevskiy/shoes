@@ -2,7 +2,6 @@
  * Slider
  */
 (function () {
-    // var items = Module.getItems();
     var activeIndex = 0;
     var carousel = document.querySelector('#carousel');
     var carouselContainer = document.querySelector('.carousel__container');

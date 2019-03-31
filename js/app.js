@@ -1,8 +1,9 @@
 
 document.addEventListener("DOMContentLoaded", function () {
- var App = (function () {
+  App = (function () {
      var response = [];
      var categoryFootwear = document.querySelector('#coats');
+     var searchInput = document.querySelector(".search__input");
      var sectionDetails = document.querySelector("#details");
      var sectionPreview = document.querySelector("#preview");
      var sectionBreadcrumb = document.querySelector(".breadcrumb__menu");
@@ -17,16 +18,17 @@ document.addEventListener("DOMContentLoaded", function () {
          "countSave": 'count',
          "basketSave": 'Cart'
      };
-     function getResponse() {
-         return response;
-     }
+
+
      function getFootwear() {
          var xhr = new XMLHttpRequest();
-
          xhr.open('GET', 'shoes.json');
          xhr.addEventListener('readystatechange', function () {
              if (xhr.readyState == 4 && xhr.status == 200) {
                  response = JSON.parse(xhr.responseText);
+                 if(searchInput){
+                     initSearch();
+                 }
                  if (categoryFootwear) {
                      var gender = getGender(response); //выборка по категории;
                      renderProducts(gender);
@@ -46,9 +48,14 @@ document.addEventListener("DOMContentLoaded", function () {
                      initCartRender();
                  }
                  initCart();
+
              }
+
+
          });
+
          xhr.send();
+
      }
 
      function getGender(response) {
@@ -95,7 +102,6 @@ document.addEventListener("DOMContentLoaded", function () {
          breadcrumbs.push({title: 'home', href: '/index.html'});
          if (id) {
              var product = getProductById(response);
-             console.log(product[0].name);
              breadcrumbs.push({title: category, href: `/cat.html?cat=${category}`});
              breadcrumbs.push({title: `${product[0].name}`});
          } else {
@@ -234,6 +240,11 @@ document.addEventListener("DOMContentLoaded", function () {
          }
      }
 
+      function getResponse() {
+          return response;
+      }
+
+
      function initListeners() {
          Preview.initListeners();
      }
@@ -242,6 +253,9 @@ document.addEventListener("DOMContentLoaded", function () {
      }
      function initCartRender() {
          CartRender.changeQuantity();
+     }
+     function initSearch() {
+         Search.initSearch();
      }
 
      getFootwear();

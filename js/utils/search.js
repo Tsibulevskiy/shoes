@@ -24,19 +24,29 @@ var Search = (function () {
         basketContainer.classList.remove("col-xs-7");
     }
     function toSearch() {
-        var name = searchInput.value;
-        return console.log(name);
+        var name = searchInput.value.toLowerCase().trim();
+        var product = App.getResponse();
+        product.forEach(function (item) {
+            if(item.name.toLowerCase() == name || item.color.toLowerCase() == name){
+                console.log("AAAA");
+                toLoadingProducts(item);
+            }
+
+        });
+        return name;
+    }
+    function toLoadingProducts(item) {
+        if(event.keyCode == 13){
+            event.preventDefault();
+            document.location.assign(`./details.html?cat=${item.category}&id=${item.id}#id=${item.id}`);
+        }
     }
     function initSearch() {
             var searchInput = document.querySelector(".search__input");
             searchInput && searchInput.addEventListener('input', toSearch);
+            searchInput && searchInput.addEventListener('keydown', toSearch)
     }
-
-
     return{
         initSearch: initSearch
-
     }
-
-
 })();
