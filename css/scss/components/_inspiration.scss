@@ -3,49 +3,74 @@
   padding: 2*$gutter;
   position: relative;
   border-top: 1px solid $light-gray;
-}
 
-.carousel__container {
-  width: 100%;
-  height: 300px;
-  position: relative;
-  overflow: hidden;
-  ul {
-    width: 5000px;
-    height: 100%;
-    position: relative;
-    li {
-      float: left;
-      height: 100%;
-      position: relative;
-      img {
-        position: absolute;
-        width: 300px;
-      }
-    }
-  }
 }
-
-#carousel__navigation {
-  span {
-    display: block;
+.carousel__container{
+  .owl-prev, .owl-next{
     position: absolute;
-    top: 51px;
-    right: 51px;
-    width: 50px;
-    height: 75%;
-    background-color: rgba(163, 163, 163, 0.6);
-    text-align: center;
-    line-height: 300px;
-    font-size: 2*$font-size;
-    transition: 300ms ease;
-    opacity: 0.2;
-    z-index: 3;
-    &:hover {
-      opacity: 1;
+    display: block;
+    top: -3% !important;;
+    width: 45px;
+    height: 100%;
+    padding: 0 !important;
+    border-radius: none !important;
+    transition: 300ms;
+
+    background-color: transparent !important;
+    font-size: 5*$font-size !important;
+    color: rgba(163,163,163,0.2)!important;
+    &:hover{
+      color: rgba(163,163,163,0.8)!important;
     }
   }
-  .carousel__prev {
-    left: 51px;
+  .owl-next{
+    right: 0;
+  }
+  .owl-prev{
+    left: 0;
   }
 }
+//.carousel__container {
+//  width: 100%;
+//  height: 300px;
+//  position: relative;
+//  overflow: hidden;
+//  ul {
+//    width: 5000px;
+//    height: 100%;
+//    position: relative;
+//    li {
+//      float: left;
+//      height: 100%;
+//      position: relative;
+//      img {
+//        position: absolute;
+//        width: 300px;
+//      }
+//    }
+//  }
+//}
+
+//#carousel__navigation {
+//  span {
+//    display: block;
+//    position: absolute;
+//    top: 51px;
+//    right: 51px;
+//    width: 50px;
+//    height: 75%;
+//    background-color: rgba(163, 163, 163, 0.6);
+//    text-align: center;
+//    line-height: 300px;
+//    font-size: 2*$font-size;
+//    transition: 300ms ease;
+//    opacity: 0.2;
+//    z-index: 3;
+//    &:hover {
+//      opacity: 1;
+//    }
+//  }
+//  .carousel__prev {
+//    left: 51px;
+//  }
+//}
